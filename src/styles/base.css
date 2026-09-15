@@ -1,0 +1,48 @@
+/**
+ * Capa base: defaults de documento. Va en @layer base para que cualquier
+ * utilidad de Tailwind que aplique el consumidor la pise sin pelear specificity.
+ */
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: color-mix(in oklch, var(--ring) 50%, transparent);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    /* Kode Mono es monoespaciada y de caja angosta: un poco mas de interlineado
+       y tracking la vuelve legible en parrafos. */
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    /* Yanone Kaffeesatz es condensada y alta: aprieta el interlineado y suma
+       peso para que no se lea raquitica frente al cuerpo monoespaciado. */
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: 0.005em;
+  }
+
+  /* Foco visible y consistente en todo el sistema. `:focus-visible` respeta
+     al usuario de mouse; nunca se elimina el outline sin reemplazo. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Respeta la preferencia del SO por menos movimiento. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

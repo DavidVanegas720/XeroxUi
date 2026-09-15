@@ -1,0 +1,10 @@
+
+*.log
+*storybook.log
+.DS_Store
+.playwright-mcp/
+.tmp-fonts/
+debug-storybook.log
+dist/
+node_modules/
+storybook-static/

@@ -1,0 +1,27 @@
+/**
+ * Fuentes locales (variables, eje `wght`).
+ *
+ * Se declara UN @font-face por familia con `font-weight` en rango: el navegador
+ * interpola cualquier peso intermedio desde un solo archivo. Por eso no se usan
+ * los .ttf estaticos del zip (11 archivos, ~640 KB) sino 2 woff2 (~77 KB).
+ *
+ * `font-display: swap` evita el texto invisible (FOIT) mientras carga.
+ * Las rutas son relativas a este archivo y se preservan en dist/ porque
+ * scripts/copy-assets.mjs copia ./fonts junto al CSS compilado.
+ */
+
+@font-face {
+  font-family: 'Yanone Kaffeesatz';
+  src: url('./fonts/YanoneKaffeesatz-Variable.woff2') format('woff2-variations');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kode Mono';
+  src: url('./fonts/KodeMono-Variable.woff2') format('woff2-variations');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}

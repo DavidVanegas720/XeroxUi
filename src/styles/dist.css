@@ -1,0 +1,19 @@
+/**
+ * Entry usado SOLO para compilar el CSS que se publica en npm.
+ *
+ * Difiere de index.css en el `@source`: escanea unicamente components/ y lib/,
+ * es decir lo que realmente se distribuye. index.css escanea ademas stories y
+ * fundaciones, que son documentacion y no deben inflar la hoja del paquete.
+ */
+/* `source(none)` apaga la deteccion automatica de Tailwind, que si no escanea
+   todo el proyecto (stories incluidas). Con ella apagada, los @source de abajo
+   son la lista exacta de lo que se escanea. */
+@import 'tailwindcss' source(none);
+
+@source '../components/**/*.{vue,ts}';
+@source '../lib/**/*.ts';
+
+@import './fonts.css';
+@import './tokens/primitives.css';
+@import './tokens/theme.css';
+@import './base.css';

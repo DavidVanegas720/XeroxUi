@@ -1,0 +1,18 @@
+/**
+ * Entry principal de xeroxUI.
+ *
+ * Consumidores del paquete npm:  import 'xerox-ui/styles.css'
+ * No necesitan tener Tailwind instalado: este archivo se compila a una hoja
+ * autocontenida con `npm run build:css`.
+ */
+@import 'tailwindcss';
+
+/* Le dice a Tailwind donde buscar clases para el tree-shaking del build de la
+   libreria. Sin esto, el CSS compilado saldria sin las utilidades que usan
+   nuestros propios componentes. */
+@source '../**/*.{vue,ts}';
+
+@import './fonts.css';
+@import './tokens/primitives.css';
+@import './tokens/theme.css';
+@import './base.css';

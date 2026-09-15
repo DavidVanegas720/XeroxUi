@@ -1,0 +1,12 @@
+/**
+ * Solo los design tokens, sin utilidades de Tailwind ni reset.
+ *
+ *   import 'xerox-ui/tokens.css'
+ *
+ * Para quien quiera usar la paleta y la tipografia de xeroxUI en su propio
+ * stack de estilos (CSS plano, styled-components, otro framework) sin arrastrar
+ * los componentes.
+ */
+@import './fonts.css';
+@import './tokens/primitives.css';
+@import './tokens/theme.css';

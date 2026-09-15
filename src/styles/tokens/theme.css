@@ -1,0 +1,176 @@
+/**
+ * CAPA 2 - SEMANTICA
+ *
+ * Unico punto donde la marca se conecta con el contrato de tokens que espera
+ * shadcn-vue. Los componentes de src/components/ui/ leen SOLO estos nombres,
+ * nunca las primitivas. Re-tematizar = editar este archivo, sin tocar un solo
+ * componente.
+ *
+ * Todos los pares fg/bg de aca estan verificados contra WCAG 2.1 AA por
+ * `npm run contrast` (scripts/check-contrast.mjs), que corre en CI.
+ */
+
+/* Dark mode por clase: el consumidor togglea `.dark` en <html>. */
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Radio base. Los componentes derivan sm/md/lg/xl desde aca. */
+  --radius: 0.375rem;
+
+  /* --- Superficies --------------------------------------------------- */
+  --background: var(--xr-brand-snow);
+  --foreground: var(--xr-stone-900);
+  --card: var(--xr-brand-snow);
+  --card-foreground: var(--xr-stone-900);
+  --popover: var(--xr-brand-snow);
+  --popover-foreground: var(--xr-stone-900);
+
+  /* --- Jerarquia de accion ------------------------------------------- */
+  /* primary = Imperial Blue. 14.09:1 con snow -> AAA. */
+  --primary: var(--xr-blue-900);
+  --primary-foreground: var(--xr-brand-snow);
+  --secondary: var(--xr-stone-100);
+  --secondary-foreground: var(--xr-stone-900);
+  --accent: var(--xr-sky-100);
+  --accent-foreground: var(--xr-blue-900);
+
+  /* --- Texto de apoyo ------------------------------------------------ */
+  --muted: var(--xr-stone-100);
+  --muted-foreground: var(--xr-stone-600); /* 6.07:1 */
+
+  /* --- Estados ------------------------------------------------------- */
+  --destructive: var(--xr-magenta-500); /* Magenta Bloom, 4.52:1 con snow */
+  --destructive-foreground: var(--xr-brand-snow);
+  --success: var(--xr-green-600);
+  --success-foreground: var(--xr-brand-snow);
+  --warning: var(--xr-amber-400);
+  --warning-foreground: var(--xr-stone-900); /* ambar pide texto oscuro */
+
+  /* --- Bordes y foco -------------------------------------------------- */
+  /* `border` es decorativo (separadores); `input` delimita un control y por
+     WCAG 1.4.11 necesita >= 3:1 contra el fondo, de ahi el salto a stone-500. */
+  --border: var(--xr-stone-200);
+  --input: var(--xr-stone-500); /* 4.01:1 */
+  --ring: var(--xr-blue-900);
+
+  /* --- Charts: 5 tonos distinguibles por tono, no solo por luminosidad -- */
+  --chart-1: var(--xr-blue-900);
+  --chart-2: var(--xr-sky-500);
+  --chart-3: var(--xr-magenta-500);
+  --chart-4: var(--xr-amber-400);
+  --chart-5: var(--xr-green-600);
+
+  /* --- Sidebar (contrato de shadcn-vue) ------------------------------- */
+  --sidebar: var(--xr-stone-50);
+  --sidebar-foreground: var(--xr-stone-900);
+  --sidebar-primary: var(--xr-blue-900);
+  --sidebar-primary-foreground: var(--xr-brand-snow);
+  --sidebar-accent: var(--xr-sky-100);
+  --sidebar-accent-foreground: var(--xr-blue-900);
+  --sidebar-border: var(--xr-stone-200);
+  --sidebar-ring: var(--xr-blue-900);
+}
+
+.dark {
+  /* Carbon Black es el fondo; stone-800 eleva las superficies flotantes y
+     stone-950 hunde las hundidas. */
+  --background: var(--xr-stone-900);
+  --foreground: var(--xr-brand-snow);
+  --card: var(--xr-stone-800);
+  --card-foreground: var(--xr-brand-snow);
+  --popover: var(--xr-stone-800);
+  --popover-foreground: var(--xr-brand-snow);
+
+  /* Imperial Blue sobre Carbon Black da 1.18:1 -> invisible. En dark el
+     primary se invierte: relleno claro con texto oscuro. */
+  --primary: var(--xr-blue-400); /* 6.11:1 con el texto oscuro */
+  --primary-foreground: var(--xr-stone-900);
+  --secondary: var(--xr-stone-800);
+  --secondary-foreground: var(--xr-brand-snow);
+  --accent: var(--xr-sky-900);
+  --accent-foreground: var(--xr-sky-100);
+
+  --muted: var(--xr-stone-800);
+  --muted-foreground: var(--xr-stone-400); /* 6.19:1 */
+
+  --destructive: var(--xr-magenta-400); /* 5.65:1 sobre Carbon */
+  --destructive-foreground: var(--xr-stone-900);
+  --success: var(--xr-green-400);
+  --success-foreground: var(--xr-stone-900);
+  --warning: var(--xr-amber-400);
+  --warning-foreground: var(--xr-stone-900);
+
+  --border: var(--xr-stone-800);
+  --input: var(--xr-stone-500); /* 4.14:1 */
+  --ring: var(--xr-blue-400);
+
+  --chart-1: var(--xr-blue-400);
+  --chart-2: var(--xr-sky-400);
+  --chart-3: var(--xr-magenta-400);
+  --chart-4: var(--xr-amber-400);
+  --chart-5: var(--xr-green-400);
+
+  --sidebar: var(--xr-stone-950);
+  --sidebar-foreground: var(--xr-brand-snow);
+  --sidebar-primary: var(--xr-blue-400);
+  --sidebar-primary-foreground: var(--xr-stone-900);
+  --sidebar-accent: var(--xr-sky-900);
+  --sidebar-accent-foreground: var(--xr-sky-100);
+  --sidebar-border: var(--xr-stone-800);
+  --sidebar-ring: var(--xr-blue-400);
+}
+
+/**
+ * Puente a Tailwind v4: `@theme inline` expone cada token semantico como una
+ * utilidad (bg-primary, text-muted-foreground, border-input...). `inline` hace
+ * que Tailwind emita `var(--primary)` en vez de copiar el valor, que es lo que
+ * permite que `.dark` siga funcionando en runtime.
+ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Tipografia: Yanone Kaffeesatz para titulos, Kode Mono para todo lo demas. */
+  --font-display: 'Yanone Kaffeesatz', 'Oswald', 'Arial Narrow', sans-serif;
+  --font-sans: 'Kode Mono', ui-monospace, 'SFMono-Regular', 'Menlo', monospace;
+  --font-mono: 'Kode Mono', ui-monospace, 'SFMono-Regular', 'Menlo', monospace;
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+}
