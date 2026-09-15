@@ -6,7 +6,17 @@ const meta: Meta = {
   title: 'Componentes/Tabs',
   component: Tabs,
   tags: ['autodocs'],
-  parameters: { controls: { disable: true } },
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        component:
+          'Reka UI se encarga del patrón ARIA completo: `role="tablist"`, navegación con flechas ' +
+          'y `aria-selected` en el trigger activo. En dark los triggers inactivos bajan a ' +
+          '`text-muted-foreground` y el activo sube a `text-foreground` con fondo propio.',
+      },
+    },
+  },
 }
 export default meta
 type Story = StoryObj
@@ -18,13 +28,13 @@ export const Playground: Story = {
       <Tabs default-value="cuenta" class="w-[360px]">
         <TabsList class="w-full">
           <TabsTrigger value="cuenta" class="flex-1">Cuenta</TabsTrigger>
-          <TabsTrigger value="password" class="flex-1">Contrasena</TabsTrigger>
+          <TabsTrigger value="password" class="flex-1">Contraseña</TabsTrigger>
         </TabsList>
         <TabsContent value="cuenta" class="text-sm text-muted-foreground">
-          Cambios en tu cuenta se guardan automaticamente.
+          Los cambios en tu cuenta se guardan automáticamente.
         </TabsContent>
         <TabsContent value="password" class="text-sm text-muted-foreground">
-          Usa una contrasena de al menos 12 caracteres.
+          Usa una contraseña de al menos 12 caracteres.
         </TabsContent>
       </Tabs>
     `,
@@ -62,7 +72,7 @@ export const Deshabilitado: Story = {
           <TabsTrigger value="dos" class="flex-1" disabled>Bloqueado</TabsTrigger>
         </TabsList>
         <TabsContent value="uno" class="text-sm text-muted-foreground">Contenido disponible.</TabsContent>
-        <TabsContent value="dos" class="text-sm text-muted-foreground">No deberia verse.</TabsContent>
+        <TabsContent value="dos" class="text-sm text-muted-foreground">No debería verse.</TabsContent>
       </Tabs>
     `,
   }),

@@ -26,8 +26,9 @@ const meta: Meta<ButtonArgs> = {
     docs: {
       description: {
         component:
-          'Button del registro de shadcn-vue, tematizado con los tokens de xeroxUI. ' +
-          'Para la variante `destructive` usar `XButton`: ver la story "Correccion De Destructive".',
+          'Botón base de la interfaz, tematizado con los colores de xeroxUI. Para la variante ' +
+          '`destructive` usa `XButton` en vez de `Button`: mantiene el contraste correcto en ' +
+          'modo oscuro (ver la story "Corrección de destructive").',
       },
     },
   },
@@ -40,7 +41,7 @@ export const Playground: Story = {
   render: (args) => ({
     components: { Button },
     setup: () => ({ args }),
-    template: `<Button v-bind="args">Boton</Button>`,
+    template: `<Button v-bind="args">Botón</Button>`,
   }),
 }
 
@@ -58,6 +59,7 @@ export const Variantes: Story = {
 }
 
 export const Tamanos: Story = {
+  name: 'Tamaños',
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { Button },
@@ -86,14 +88,12 @@ export const Estados: Story = {
 }
 
 /**
- * El registro hardcodea `text-white` y `dark:bg-destructive/60` en la variante
- * `destructive`. Con la paleta de xeroxUI eso falla WCAG en dark: el relleno
- * translucido queda en 2.82:1 contra el fondo (minimo 3:1 por 1.4.11).
- *
+ * `Button` con `variant="destructive"` no cumple el contraste mínimo en modo
+ * oscuro. `XButton` corrige el color de relleno sin cambiar nada más de la API.
  * Cambia el tema a Dark en la toolbar para ver la diferencia.
  */
 export const CorreccionDeDestructive: Story = {
-  name: 'Correccion de destructive',
+  name: 'Corrección de destructive',
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { Button, XButton },

@@ -13,9 +13,10 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'vue-sonner define sus propios colores para `richColors`, desconectados de la paleta. ' +
-          'Un toast normal (sin richColors) ya usa nuestros tokens via el Toaster de ui/; `XSonner` ' +
-          'ademas conecta success/info/warning/error de richColors a los tokens `*-subtle`.',
+          'Un toast normal ya usa los colores de xeroxUI. Si vas a usar `rich-colors` ' +
+          '(success / info / warning / error con fondo de color), usa `XSonner` en vez de ' +
+          '`Toaster`: mantiene esos colores dentro de la paleta en lugar de los genéricos de ' +
+          'la librería de toasts.',
       },
     },
   },
@@ -24,10 +25,11 @@ export default meta
 type Story = StoryObj
 
 export const Basico: Story = {
+  name: 'Básico',
   render: () => ({
     components: { Toaster, Button },
     setup: () => ({
-      disparar: () => toast('Evento creado', { description: 'Lunes, 9am - Revision de sprint' }),
+      disparar: () => toast('Evento creado', { description: 'Lunes, 9am — Revisión de sprint' }),
     }),
     template: `
       <div>
@@ -38,10 +40,7 @@ export const Basico: Story = {
   }),
 }
 
-/**
- * Con richColors, el Toaster crudo del registro usa los verdes/rojos
- * genericos de vue-sonner. XSonner los reemplaza por nuestra paleta.
- */
+/** `Toaster` con `rich-colors` usa verdes/rojos genéricos; `XSonner` usa los de xeroxUI. */
 export const ColoresEnriquecidos: Story = {
   name: 'Colores enriquecidos (XSonner)',
   render: () => ({
@@ -49,8 +48,8 @@ export const ColoresEnriquecidos: Story = {
     setup: () => ({
       success: () => toast.success('Cambios guardados'),
       error: () => toast.error('No se pudo conectar al servidor'),
-      warning: () => toast.warning('Tu sesion expira en 5 minutos'),
-      info: () => toast.info('Hay una version nueva disponible'),
+      warning: () => toast.warning('Tu sesión expira en 5 minutos'),
+      info: () => toast.info('Hay una versión nueva disponible'),
     }),
     template: `
       <div class="flex flex-col gap-3">

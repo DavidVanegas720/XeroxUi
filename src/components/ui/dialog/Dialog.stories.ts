@@ -16,9 +16,12 @@ const meta = {
     docs: {
       description: {
         component:
-          'Modal sobre Reka UI. Trae focus trap, restauracion del foco al cerrar, cierre con Escape ' +
-          'y `aria-modal`. El overlay usa `bg-black/80` del registro: es un scrim convencional y no ' +
-          'se tematiza, porque oscurecer no depende de la paleta.',
+          'Modal accesible: atrapa el foco, lo restaura al cerrar, se cierra con Escape y ' +
+          'asocia título y descripción automáticamente vía `aria-labelledby` / ' +
+          '`aria-describedby`. Una salvedad: no agrega `aria-modal="true"` por su cuenta — si tu ' +
+          'caso de uso lo requiere, agrégalo directo en `DialogContent`. El overlay usa un ' +
+          'scrim oscuro fijo (`bg-black/80`) que no cambia con el tema: es un recurso de ' +
+          'oscurecimiento convencional, no un color de marca.',
       },
     },
   },
@@ -28,6 +31,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Basico: Story = {
+  name: 'Básico',
   render: () => ({
     components: { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Button, Input, Label },
     template: `
@@ -54,7 +58,7 @@ export const Basico: Story = {
   }),
 }
 
-/** Confirmacion destructiva: usa XButton para no romper contraste en dark. */
+/** Confirmación destructiva: usa XButton para no romper el contraste en dark. */
 export const Destructivo: Story = {
   render: () => ({
     components: { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Button, XButton },
@@ -64,11 +68,11 @@ export const Destructivo: Story = {
         <DialogContent class="sm:max-w-[420px]">
           <DialogHeader>
             <DialogTitle>Eliminar cuenta</DialogTitle>
-            <DialogDescription>Esta accion es permanente y no se puede deshacer.</DialogDescription>
+            <DialogDescription>Esta acción es permanente y no se puede deshacer.</DialogDescription>
           </DialogHeader>
           <DialogFooter class="gap-2">
             <DialogClose as-child><Button variant="outline">Cancelar</Button></DialogClose>
-            <XButton variant="destructive">Si, eliminar</XButton>
+            <XButton variant="destructive">Sí, eliminar</XButton>
           </DialogFooter>
         </DialogContent>
       </Dialog>

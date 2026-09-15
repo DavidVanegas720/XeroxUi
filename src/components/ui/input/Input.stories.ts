@@ -23,8 +23,8 @@ const meta: Meta<InputArgs> = {
     docs: {
       description: {
         component:
-          'El borde usa `--input` (stone-500), no `--border`. Es a proposito: WCAG 1.4.11 exige ' +
-          '3:1 para el limite de un control, y los neutros mas claros no llegan (stone-300 da 1.87:1).',
+          'El borde es más marcado que el de una Card o un separador, a propósito: un control ' +
+          'interactivo necesita más contraste contra el fondo que un borde decorativo.',
       },
     },
   },
@@ -42,7 +42,7 @@ export const Playground: Story = {
 }
 
 /**
- * La asociacion label/input se hace con `for` + `id`. Sin eso el lector de
+ * La asociación label/input se hace con `for` + `id`. Sin eso el lector de
  * pantalla no anuncia la etiqueta al enfocar el campo.
  */
 export const ConLabel: Story = {
@@ -67,17 +67,17 @@ export const Estados: Story = {
       <div class="flex w-[280px] flex-col gap-5">
         <div class="flex flex-col gap-2">
           <Label for="normal">Normal</Label>
-          <Input id="normal" placeholder="Escribi algo" />
+          <Input id="normal" placeholder="Escribe algo" />
         </div>
         <div class="flex flex-col gap-2">
           <Label for="disabled">Disabled</Label>
           <Input id="disabled" disabled placeholder="No editable" />
         </div>
         <div class="flex flex-col gap-2">
-          <Label for="invalido">Invalido</Label>
+          <Label for="invalido">Inválido</Label>
           <Input id="invalido" aria-invalid="true" aria-describedby="err" value="no-es-un-email" />
           <!-- aria-describedby ata el mensaje al campo: el error se anuncia junto al valor -->
-          <p id="err" class="text-sm text-destructive">Formato de email invalido.</p>
+          <p id="err" class="text-sm text-destructive">Formato de email inválido.</p>
         </div>
       </div>
     `,

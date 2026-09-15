@@ -27,13 +27,13 @@ export const Completa: Story = {
     template: `
       <Card class="w-[380px]">
         <CardHeader>
-          <CardTitle>Despliegue a produccion</CardTitle>
-          <CardDescription>Se aplicaran 3 migraciones pendientes.</CardDescription>
+          <CardTitle>Despliegue a producción</CardTitle>
+          <CardDescription>Se aplicarán 3 migraciones pendientes.</CardDescription>
           <CardAction><Badge variant="secondary">v0.1.0</Badge></CardAction>
         </CardHeader>
         <CardContent>
           <p class="text-sm text-muted-foreground">
-            El titulo usa Yanone Kaffeesatz y el cuerpo Kode Mono.
+            El título usa Yanone Kaffeesatz y el cuerpo Kode Mono.
           </p>
         </CardContent>
         <CardFooter class="gap-2">
@@ -51,7 +51,7 @@ export const SoloContenido: Story = {
     components: { Card, CardContent },
     template: `
       <Card class="w-[380px]">
-        <CardContent><p class="text-sm">Card minima, sin header ni footer.</p></CardContent>
+        <CardContent><p class="text-sm">Card mínima, sin header ni footer.</p></CardContent>
       </Card>
     `,
   }),

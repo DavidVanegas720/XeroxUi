@@ -1,10 +1,12 @@
+<img src="./assets/brand/logo.jpg" alt="xeroxUI" width="240" />
+
 # xeroxUI
 
 Design system de componentes Vue 3 sobre [shadcn-vue](https://www.shadcn-vue.com),
-con paleta y tipografia propias. Se distribuye como paquete npm compilado: el
+con paleta y tipografía propias. Se distribuye como paquete npm compilado: el
 consumidor **no necesita tener Tailwind instalado**.
 
-## Instalacion
+## Instalación
 
 ```bash
 npm install xerox-ui
@@ -28,7 +30,7 @@ import { XButton, Card, CardHeader, CardTitle } from 'xerox-ui'
 </template>
 ```
 
-Para usar solo los tokens (paleta + tipografia) en tu propio stack de estilos:
+Para usar solo los tokens (paleta + tipografía) en tu propio stack de estilos:
 
 ```ts
 import 'xerox-ui/tokens.css'
@@ -52,23 +54,25 @@ document.documentElement.classList.toggle('dark')
 | Magenta Bloom | `#D8315B` | `destructive` |
 | Carbon Black | `#1E1B18` | `foreground` (light), `background` (dark) |
 
-Los 5 son **anclas**: cada uno queda clavado en un escalon exacto de su rampa y
-el resto se interpola en OKLCH. Verde y ambar son derivados para `success` y
-`warning`, que la paleta no cubria.
+Los 5 son **anclas**: cada uno queda clavado en un punto exacto de la escala y
+el resto se interpola en OKLCH. Verde y ámbar son derivados para `success` y
+`warning`, que la paleta no cubría.
 
-## Tipografia
+## Tipografía
 
 - **Yanone Kaffeesatz** (`--font-display`) — headings.
 - **Kode Mono** (`--font-sans`, `--font-mono`) — cuerpo e interfaz.
 
-Ambas variables (eje `wght`), un `woff2` por familia: 77 KB para todos los pesos.
+Ambas son fuentes variables (eje `wght`), un `woff2` por familia: 77 KB entre
+las dos, con todos los pesos incluidos.
 
 ## Scripts
 
-| Comando | Que hace |
+| Comando | Qué hace |
 |---|---|
 | `npm run build` | Build completo (JS + tipos + CSS + fuentes) |
 | `npm run storybook` | Storybook en `:6006` |
+| `npm run build-storybook` | Storybook estático para publicar |
 | `npm run contrast` | Valida los pares del tema contra WCAG 2.1 AA |
 | `npm run tokens` | Regenera las primitivas desde `scripts/palette.mjs` |
 | `npm run fonts` | Reconvierte las fuentes de `Fonts/` a woff2 |
@@ -78,12 +82,12 @@ Ambas variables (eje `wght`), un `woff2` por familia: 77 KB para todos los pesos
 
 Dos redes, y hacen falta las dos:
 
-- `npm run contrast` — 36 pares foreground/background en light y dark, leyendo
-  los CSS reales. Falla con exit 1.
+- `npm run contrast` — 22 pares foreground/background, en light y en dark (44
+  comprobaciones), leyendo los CSS reales. Falla con exit 1.
 - `addon-a11y` en Storybook — axe-core sobre el DOM renderizado de cada story,
   configurado con `test: 'error'`.
 
-## Como extender
+## Cómo extender
 
 Ver [CONVENTIONS.md](./CONVENTIONS.md). La regla corta: **`src/components/ui/`
-no se edita nunca**, asi `shadcn-vue add --overwrite` siempre es seguro.
+no se edita nunca**, así `shadcn-vue add --overwrite` siempre es seguro.

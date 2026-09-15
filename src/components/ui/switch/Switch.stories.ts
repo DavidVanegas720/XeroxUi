@@ -6,7 +6,17 @@ const meta: Meta = {
   title: 'Componentes/Switch',
   component: Switch,
   tags: ['autodocs'],
-  parameters: { controls: { disable: true } },
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        component:
+          'El estado se distingue por color además de por la posición del thumb: apagado usa ' +
+          'un tono neutro y encendido el color primario, con contraste suficiente contra el ' +
+          'fondo en los dos casos.',
+      },
+    },
+  },
 }
 export default meta
 type Story = StoryObj

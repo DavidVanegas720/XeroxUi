@@ -6,7 +6,18 @@ const meta: Meta = {
   title: 'Componentes/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
-  parameters: { controls: { disable: true } },
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        component:
+          'El estado `indeterminate` se anuncia correctamente a un lector de pantalla ' +
+          '(`aria-checked="mixed"`), pero por defecto se ve igual que `checked`: mismo ícono ' +
+          'de check. Si necesitas distinguirlos también a la vista, pasa tu propio ícono por ' +
+          'el slot por defecto.',
+      },
+    },
+  },
 }
 export default meta
 type Story = StoryObj
@@ -25,7 +36,7 @@ export const ConLabel: Story = {
     template: `
       <div class="flex items-center gap-2">
         <Checkbox id="terminos" />
-        <Label for="terminos">Acepto los terminos y condiciones</Label>
+        <Label for="terminos">Acepto los términos y condiciones</Label>
       </div>
     `,
   }),

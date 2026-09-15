@@ -10,6 +10,16 @@ const meta = {
   tags: ['autodocs'],
   argTypes: { variant: { control: 'select', options: VARIANTS } },
   args: { variant: 'default' },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Etiqueta compacta para estado o categoría. Para la variante `destructive` usa ' +
+          '`XBadge` en vez de `Badge`: mantiene el contraste correcto en modo oscuro (igual ' +
+          'que `Button`/`XButton`).',
+      },
+    },
+  },
 } satisfies Meta<typeof Badge>
 
 export default meta
@@ -36,9 +46,9 @@ export const Variantes: Story = {
   }),
 }
 
-/** Badge comparte con Button el hardcode de `text-white` en `destructive`. */
+/** `Badge` con `variant="destructive"` no cumple contraste en modo oscuro; `XBadge` sí. */
 export const CorreccionDeDestructive: Story = {
-  name: 'Correccion de destructive',
+  name: 'Corrección de destructive',
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { Badge, XBadge },
@@ -57,7 +67,7 @@ export const CorreccionDeDestructive: Story = {
   }),
 }
 
-/** Como `asChild`, para que un badge clickeable siga siendo un <a> real. */
+/** Con `as="a"` el badge clicable sigue siendo un enlace real, navegable por teclado. */
 export const ComoEnlace: Story = {
   name: 'Como enlace',
   parameters: { controls: { disable: true } },

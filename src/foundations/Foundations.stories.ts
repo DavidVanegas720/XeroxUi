@@ -8,8 +8,8 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'Los swatches leen las variables CSS en runtime, asi que reflejan el tema activo. ' +
-          'Cambia entre Light y Dark en la toolbar para ver como se remapea cada rol.',
+          'Los swatches leen las variables CSS en runtime, así que reflejan el tema activo. ' +
+          'Cambia entre Light y Dark en la toolbar para ver cómo se remapea cada rol.',
       },
     },
   },
@@ -32,7 +32,7 @@ const SEMANTIC = [
 
 /** Cada par relleno/texto del tema, con su contraste calculado en vivo. */
 export const ColoresSemanticos: Story = {
-  name: 'Colores semanticos',
+  name: 'Colores semánticos',
   render: () => ({
     setup: () => ({ pairs: SEMANTIC }),
     template: `
@@ -63,11 +63,13 @@ export const RampasPrimitivas: Story = {
         <div v-for="ramp in ramps" :key="ramp">
           <p class="mb-1.5 text-sm font-medium">{{ ramp }}</p>
           <!--
-            El numero de paso va DEBAJO del swatch, no superpuesto. En el
-            escalon 500 de casi toda rampa (L ~59%) ni texto negro ni blanco
-            llegan a 4.5:1 a tamano normal -- es zona muerta de contraste por
-            diseno, lo detecto addon-a11y. Poner la etiqueta fuera del color
-            lo evita de raiz y no depende de ajustar umbrales por paleta.
+            El número de paso va DEBAJO del swatch, nunca encima del color.
+            La versión anterior lo superponía y elegía texto claro u oscuro con
+            un corte fijo en el escalón 500, que addon-a11y marcó: de 500 en
+            adelante (L ~59%) el texto blanco queda entre 3.39:1 y 4.18:1 en
+            cinco de las seis rampas. Negro sí habría pasado en las seis, pero
+            sacar la etiqueta del color resuelve el problema sin depender de los
+            valores L de la rampa, que cambian cada vez que se toca la paleta.
           -->
           <div class="flex overflow-hidden rounded-md border">
             <div
@@ -88,22 +90,23 @@ export const RampasPrimitivas: Story = {
   }),
 }
 
-/** Yanone Kaffeesatz para titulos, Kode Mono para cuerpo e interfaz. */
+/** Yanone Kaffeesatz para títulos, Kode Mono para cuerpo e interfaz. */
 export const Tipografia: Story = {
+  name: 'Tipografía',
   render: () => ({
     template: `
       <div class="flex flex-col gap-6">
         <div>
           <p class="mb-2 text-sm text-muted-foreground">--font-display · Yanone Kaffeesatz</p>
-          <h1 class="text-5xl">Titulo de nivel 1</h1>
-          <h2 class="text-3xl">Titulo de nivel 2</h2>
-          <h3 class="text-xl">Titulo de nivel 3</h3>
+          <h1 class="text-5xl">Título de nivel 1</h1>
+          <h2 class="text-3xl">Título de nivel 2</h2>
+          <h3 class="text-xl">Título de nivel 3</h3>
         </div>
         <div>
           <p class="mb-2 text-sm text-muted-foreground">--font-sans · Kode Mono</p>
           <p class="max-w-prose">
-            Kode Mono es monoespaciada, asi que la capa base le sube el interlineado
-            a 1.6 y le agrega un poco de tracking para que un parrafo largo no se
+            Kode Mono es monoespaciada, así que la capa base le sube el interlineado
+            a 1.6 y le agrega un poco de tracking para que un párrafo largo no se
             vuelva denso. 0123456789 &mdash; il1 O0 {} []
           </p>
         </div>

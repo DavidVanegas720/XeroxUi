@@ -12,6 +12,10 @@ const config: StorybookConfig = {
     '@storybook/addon-docs',
   ],
   framework: '@storybook/vue3-vite',
+  // Logo + favicon de marca (assets/brand/) servidos en la raiz del server de
+  // Storybook. Referenciados desde manager-head.html (favicon) y manager.ts
+  // (logo en la toolbar).
+  staticDirs: ['../assets/brand'],
   // El Vite interno de Storybook no hereda vite.config.ts (ese solo aplica al
   // build de la libreria) ni registra el plugin de Tailwind por su cuenta. Sin
   // esto, `@import 'tailwindcss'` en index.css se sirve crudo, sin compilar:

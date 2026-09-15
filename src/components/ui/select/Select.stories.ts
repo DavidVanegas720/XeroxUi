@@ -12,10 +12,9 @@ const meta: Meta = {
       description: {
         component:
           '**Todo `SelectTrigger` necesita `aria-label` o un `<Label for>` asociado.** ' +
-          'El placeholder que se ve en `SelectValue` no alcanza: `role="combobox"` en ARIA tiene ' +
-          '`nameFrom: author` (no `contents`), asi que el texto visible no cuenta como nombre ' +
-          'accesible aunque se vea perfecto. Detectado por axe-core (`button-name`, Critical) -- ' +
-          'sin uno de los dos, el control es mudo para un lector de pantalla.',
+          'El placeholder que se ve en `SelectValue` no alcanza: por especificación ARIA, un ' +
+          '`combobox` no toma su nombre accesible del texto visible. Sin uno de los dos, el ' +
+          'control queda mudo para un lector de pantalla aunque se vea perfecto.',
       },
     },
   },
@@ -28,8 +27,8 @@ export const Playground: Story = {
     components: { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue },
     template: `
       <Select>
-        <SelectTrigger class="w-[220px]" aria-label="Elegi un framework">
-          <SelectValue placeholder="Elegi un framework" />
+        <SelectTrigger class="w-[220px]" aria-label="Elige un framework">
+          <SelectValue placeholder="Elige un framework" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
@@ -44,22 +43,22 @@ export const Playground: Story = {
   }),
 }
 
-/** Preferido sobre aria-label cuando hay un label visible en la UI. */
+/** Preferido sobre `aria-label` cuando hay un label visible en la UI. */
 export const ConLabel: Story = {
   name: 'Con label',
   render: () => ({
     components: { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Label },
     template: `
       <div class="flex w-[220px] flex-col gap-2">
-        <Label for="pais">Pais</Label>
+        <Label for="pais">País</Label>
         <Select>
           <SelectTrigger id="pais" class="w-full">
-            <SelectValue placeholder="Selecciona un pais" />
+            <SelectValue placeholder="Selecciona un país" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="ar">Argentina</SelectItem>
             <SelectItem value="co">Colombia</SelectItem>
-            <SelectItem value="mx">Mexico</SelectItem>
+            <SelectItem value="mx">México</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -68,21 +67,22 @@ export const ConLabel: Story = {
 }
 
 export const Tamanos: Story = {
+  name: 'Tamaños',
   render: () => ({
     components: { Select, SelectContent, SelectItem, SelectTrigger, SelectValue },
     template: `
       <div class="flex flex-col items-start gap-3">
         <Select>
-          <SelectTrigger size="sm" class="w-[180px]" aria-label="Tamano sm">
-            <SelectValue placeholder="Tamano sm" />
+          <SelectTrigger size="sm" class="w-[180px]" aria-label="Tamaño sm">
+            <SelectValue placeholder="Tamaño sm" />
           </SelectTrigger>
-          <SelectContent><SelectItem value="a">Opcion A</SelectItem></SelectContent>
+          <SelectContent><SelectItem value="a">Opción A</SelectItem></SelectContent>
         </Select>
         <Select>
-          <SelectTrigger size="default" class="w-[180px]" aria-label="Tamano default">
-            <SelectValue placeholder="Tamano default" />
+          <SelectTrigger size="default" class="w-[180px]" aria-label="Tamaño default">
+            <SelectValue placeholder="Tamaño default" />
           </SelectTrigger>
-          <SelectContent><SelectItem value="a">Opcion A</SelectItem></SelectContent>
+          <SelectContent><SelectItem value="a">Opción A</SelectItem></SelectContent>
         </Select>
       </div>
     `,
@@ -97,7 +97,7 @@ export const Deshabilitado: Story = {
         <SelectTrigger class="w-[220px]" aria-label="No disponible">
           <SelectValue placeholder="No disponible" />
         </SelectTrigger>
-        <SelectContent><SelectItem value="a">Opcion A</SelectItem></SelectContent>
+        <SelectContent><SelectItem value="a">Opción A</SelectItem></SelectContent>
       </Select>
     `,
   }),
