@@ -1,1 +1,18 @@
 <link rel="icon" href="favicon.jpg" type="image/jpeg" />
+
+<!--
+  Storybook's default <title> is "storybook - Storybook" unless a title
+  preset is configured, and its manager SPA keeps overwriting document.title
+  on every navigation (confirmed: a one-shot script here gets stomped as
+  soon as you open a story). Not worth fighting -- the per-page browser-tab
+  title ("Alert - Docs (dot) Storybook") is normal, useful Storybook
+  behavior. What actually matters for a shared link is the OG tags below:
+  messaging apps (WhatsApp, Telegram, etc.) fetch the raw HTML without
+  running JS, so they read these regardless of what the SPA does afterwards.
+-->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="xeroxUI" />
+<meta property="og:description" content="Vue 3 component library built on shadcn-vue, with its own color palette and typography." />
+<meta property="og:image" content="https://davidvanegas720.github.io/XeroxUi/logo.jpg" />
+<meta property="og:url" content="https://davidvanegas720.github.io/XeroxUi/" />
+<meta name="twitter:card" content="summary_large_image" />
