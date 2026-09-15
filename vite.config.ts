@@ -33,7 +33,8 @@ export default defineConfig({
       external: [
         'vue',
         'reka-ui',
-        'lucide-vue-next',
+        '@lucide/vue',
+        'vue-sonner',
         'class-variance-authority',
         'clsx',
         'tailwind-merge',

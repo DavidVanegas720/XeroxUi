@@ -74,6 +74,11 @@ const PAIRS = [
   ['sidebar-foreground / sidebar', 'sidebar-foreground', 'sidebar', 4.5],
   ['sidebar-primary-fg / sidebar-primary', 'sidebar-primary-foreground', 'sidebar-primary', 4.5],
   ['sidebar-accent-fg / sidebar-accent', 'sidebar-accent-foreground', 'sidebar-accent', 4.5],
+  // Superficies "suaves" (toasts, banners). Ver theme.css.
+  ['success-subtle-fg / success-subtle', 'success-subtle-foreground', 'success-subtle', 4.5],
+  ['warning-subtle-fg / warning-subtle', 'warning-subtle-foreground', 'warning-subtle', 4.5],
+  ['destructive-subtle-fg / destructive-subtle', 'destructive-subtle-foreground', 'destructive-subtle', 4.5],
+  ['info-subtle-fg / info-subtle', 'info-subtle-foreground', 'info-subtle', 4.5],
   // Limites de controles y foco: 3:1 contra el fondo adyacente.
   ['input (borde de control) / background', 'input', 'background', 3],
   ['ring (foco) / background', 'ring', 'background', 3],

@@ -194,3 +194,41 @@ paleta) sino sacar la etiqueta de encima del color: el numero de paso va debajo
 del swatch, sobre el fondo de la pagina, en `text-muted-foreground` -- un par
 ya validado por `npm run contrast`. Mas robusto que perseguir el umbral exacto
 cada vez que cambia un valor L de la rampa.
+
+## Select siempre necesita aria-label o un Label asociado
+
+`SelectTrigger` renderiza `role="combobox"` en un `<button>` cuyo unico texto
+visible es el placeholder/valor de `SelectValue`. Por ARIA, `combobox` tiene
+`nameFrom: author` (no `contents`) -- el texto visible **no cuenta** como
+nombre accesible por spec, aunque se vea perfecto y algunas herramientas lo
+toleren. axe-core lo marca `button-name`, Critical.
+
+Todo `SelectTrigger` necesita uno de los dos:
+- Un `<Label for="mismo-id">` asociado (preferido cuando hay lugar en el layout).
+- `aria-label="..."` directo en el trigger (cuando no hay label visible).
+
+No hay wrapper que lo resuelva solo -- `aria-label` depende del contenido de
+cada Select, no se puede derivar de forma generica. Es responsabilidad de
+quien usa el componente, documentada aca y en cada story de Select.
+
+## Superficies "suaves" para estados que no son error
+
+`success` y `warning` (y ahora `destructive`) tienen version `-subtle` en
+`theme.css`: fondo palido + texto oscuro + borde intermedio, patron de
+toast/banner en vez de relleno solido. Agregado al conectar Sonner
+(`vue-sonner` trae sus propios verdes/rojos en HSL para `richColors`,
+desconectados de la paleta) y para poder darle a Alert variantes `success` /
+`warning` / `info` que el registro no trae (solo tiene `default` /
+`destructive`).
+
+No hay `--info` solido: `--primary` ya es azul solido, agregar otro rol
+duplicaria esa funcion. `info` solo existe en su version `-subtle`.
+
+Patron de valores (verificado >= 7.85:1 en las 4 familias, ambos modos):
+- Light: fondo `-100`, texto `-800`, borde `-300`.
+- Dark: fondo `-950`, texto `-300`, borde `-700`.
+
+`XAlert` extiende `alertVariants` pasando estas clases por `class` (mismo
+mecanismo de twMerge que `variant-fixes.ts`). `XSonner` las conecta a las
+variables CSS que `vue-sonner` ya lee (`--success-bg`, `--error-text`, etc.),
+sin tocar `ui/sonner/Sonner.vue`.

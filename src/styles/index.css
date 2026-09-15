@@ -16,3 +16,12 @@
 @import './tokens/primitives.css';
 @import './tokens/theme.css';
 @import './base.css';
+
+/**
+ * Sin esto el Toaster de Sonner renderiza `position: static`: los toasts
+ * aparecen en el flujo normal de la pagina en vez de flotar como overlay.
+ * vue-sonner expone su layout base (posicionamiento, stacking, swipe) como
+ * export separado (`vue-sonner/style.css`) y el componente .vue del registro
+ * no lo importa solo. Autocontenido: sin @font-face ni resets globales.
+ */
+@import 'vue-sonner/style.css';

@@ -17,3 +17,7 @@
 @import './tokens/primitives.css';
 @import './tokens/theme.css';
 @import './base.css';
+
+/* Layout base de Sonner (posicionamiento, stacking, swipe). Ver index.css
+   para el detalle de por que hace falta. */
+@import 'vue-sonner/style.css';
