@@ -1,0 +1,83 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Introduction" />
+
+# xeroxUI
+
+A Vue 3 component library built on [shadcn-vue](https://www.shadcn-vue.com), with its own
+color palette and typography. It ships as a compiled npm package — you don't need Tailwind
+installed to use it.
+
+## Install
+
+```bash
+npm install xerox-ui
+```
+
+Import the stylesheet once, anywhere that loads before your components render:
+
+```ts
+// main.ts
+import 'xerox-ui/styles.css'
+```
+
+## Use a component
+
+```vue
+<script setup lang="ts">
+import { XButton, Card, CardHeader, CardTitle } from 'xerox-ui'
+</script>
+
+<template>
+  <Card>
+    <CardHeader><CardTitle>Hello</CardTitle></CardHeader>
+    <XButton variant="destructive">Delete</XButton>
+  </Card>
+</template>
+```
+
+Components with an `X` prefix (`XButton`, `XBadge`, `XAlert`, `XSonner`) are drop-in
+replacements for their base version — same props, same slots — that fix a contrast issue in
+the base component for at least one variant. Each one's own docs page explains why; the short
+version is: prefer the `X` version whenever it exists.
+
+## Dark mode
+
+Toggle the `dark` class on `<html>`. Every token remaps on its own, no extra setup:
+
+```ts
+document.documentElement.classList.toggle('dark')
+```
+
+## Just the design tokens
+
+If you want the xeroxUI palette and typography in your own styling setup, without any
+component:
+
+```ts
+import 'xerox-ui/tokens.css'
+```
+
+That gives you the CSS custom properties (`--primary`, `--background`, `--font-display`, etc.)
+documented under **Foundations → Tokens**, and nothing else.
+
+## Icons
+
+Icons are [Lucide](https://lucide.dev) (`@lucide/vue`). It's not re-exported from `xerox-ui` —
+install it in your own project and import icons directly from it. **Foundations → Icons** has
+the sizing and color conventions.
+
+## Browsing this Storybook
+
+- **Components** — every component, each with a Playground (interactive controls), Variants,
+  Sizes/States, and any accessibility or contrast fix that applies.
+- **Foundations** — design tokens (colors, typography) and the icon library.
+- The **theme toggle** in the toolbar switches every story between light and dark, so you can
+  check both before shipping.
+
+## Contributing
+
+If you're working inside this repository rather than consuming the published package, see
+[CONVENTIONS.md](https://github.com/DavidVanegas720/XeroxUi/blob/main/CONVENTIONS.md) in the
+repo root for the architecture, the token layers, and the rule that governs everything:
+**`src/components/ui/` is vendored code and is never hand-edited.**

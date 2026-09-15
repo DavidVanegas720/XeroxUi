@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta: Meta = {
-  title: 'Fundaciones/Tokens',
+  title: 'Foundations/Tokens',
   tags: ['autodocs'],
   parameters: {
     controls: { disable: true },
     docs: {
       description: {
         component:
-          'Los swatches leen las variables CSS en runtime, así que reflejan el tema activo. ' +
-          'Cambia entre Light y Dark en la toolbar para ver cómo se remapea cada rol.',
+          'Swatches read the CSS variables at runtime, so they reflect the active theme. ' +
+          'Switch between Light and Dark in the toolbar to see how each role gets remapped.',
       },
     },
   },
@@ -30,9 +30,9 @@ const SEMANTIC = [
   ['warning', 'warning-foreground'],
 ]
 
-/** Cada par relleno/texto del tema, con su contraste calculado en vivo. */
-export const ColoresSemanticos: Story = {
-  name: 'Colores semánticos',
+/** Every fill/text pair in the theme, with its contrast computed live. */
+export const SemanticColors: Story = {
+  name: 'Semantic colors',
   render: () => ({
     setup: () => ({ pairs: SEMANTIC }),
     template: `
@@ -53,9 +53,9 @@ export const ColoresSemanticos: Story = {
 const RAMPS = ['blue', 'sky', 'magenta', 'stone', 'green', 'amber']
 const STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
 
-/** Las rampas primitivas. Los 5 colores de marca son las anclas. */
-export const RampasPrimitivas: Story = {
-  name: 'Rampas primitivas',
+/** The primitive ramps. The 5 brand colors are the anchors. */
+export const PrimitiveRamps: Story = {
+  name: 'Primitive ramps',
   render: () => ({
     setup: () => ({ ramps: RAMPS, steps: STEPS }),
     template: `
@@ -63,13 +63,13 @@ export const RampasPrimitivas: Story = {
         <div v-for="ramp in ramps" :key="ramp">
           <p class="mb-1.5 text-sm font-medium">{{ ramp }}</p>
           <!--
-            El número de paso va DEBAJO del swatch, nunca encima del color.
-            La versión anterior lo superponía y elegía texto claro u oscuro con
-            un corte fijo en el escalón 500, que addon-a11y marcó: de 500 en
-            adelante (L ~59%) el texto blanco queda entre 3.39:1 y 4.18:1 en
-            cinco de las seis rampas. Negro sí habría pasado en las seis, pero
-            sacar la etiqueta del color resuelve el problema sin depender de los
-            valores L de la rampa, que cambian cada vez que se toca la paleta.
+            The step number goes BELOW the swatch, never on top of the color.
+            An earlier version overlaid it and picked light or dark text with a
+            fixed cutoff at step 500, which addon-a11y flagged: from step 500
+            up (L ~59%) white text lands between 3.39:1 and 4.18:1 in five of
+            the six ramps. Black would have passed in all six, but pulling the
+            label off the color fixes it without depending on the ramp's L
+            values, which change every time the palette is touched.
           -->
           <div class="flex overflow-hidden rounded-md border">
             <div
@@ -90,31 +90,30 @@ export const RampasPrimitivas: Story = {
   }),
 }
 
-/** Yanone Kaffeesatz para títulos, Kode Mono para cuerpo e interfaz. */
-export const Tipografia: Story = {
-  name: 'Tipografía',
+/** Yanone Kaffeesatz for headings, Kode Mono for body and interface. */
+export const Typography: Story = {
   render: () => ({
     template: `
       <div class="flex flex-col gap-6">
         <div>
           <p class="mb-2 text-sm text-muted-foreground">--font-display · Yanone Kaffeesatz</p>
-          <h1 class="text-5xl">Título de nivel 1</h1>
-          <h2 class="text-3xl">Título de nivel 2</h2>
-          <h3 class="text-xl">Título de nivel 3</h3>
+          <h1 class="text-5xl">Heading level 1</h1>
+          <h2 class="text-3xl">Heading level 2</h2>
+          <h3 class="text-xl">Heading level 3</h3>
         </div>
         <div>
           <p class="mb-2 text-sm text-muted-foreground">--font-sans · Kode Mono</p>
           <p class="max-w-prose">
-            Kode Mono es monoespaciada, así que la capa base le sube el interlineado
-            a 1.6 y le agrega un poco de tracking para que un párrafo largo no se
-            vuelva denso. 0123456789 &mdash; il1 O0 {} []
+            Kode Mono is monospaced, so the base layer bumps line-height to 1.6
+            and adds a bit of tracking so a long paragraph doesn't feel dense.
+            0123456789 &mdash; il1 O0 {} []
           </p>
         </div>
         <div>
-          <p class="mb-2 text-sm text-muted-foreground">Pesos disponibles (eje variable wght)</p>
+          <p class="mb-2 text-sm text-muted-foreground">Available weights (variable wght axis)</p>
           <div class="flex flex-col gap-1">
             <p v-for="w in [400, 500, 600, 700]" :key="w" :style="{ fontWeight: w }">
-              Kode Mono {{ w }} — el mismo archivo woff2 cubre todos.
+              Kode Mono {{ w }} — the same woff2 file covers all of them.
             </p>
           </div>
         </div>

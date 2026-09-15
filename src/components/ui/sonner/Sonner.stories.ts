@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { XSonner } from '@/components/xerox/sonner'
 
 const meta: Meta = {
-  title: 'Componentes/Sonner',
+  title: 'Components/Sonner',
   component: Toaster,
   tags: ['autodocs'],
   parameters: {
@@ -13,10 +13,10 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'Un toast normal ya usa los colores de xeroxUI. Si vas a usar `rich-colors` ' +
-          '(success / info / warning / error con fondo de color), usa `XSonner` en vez de ' +
-          '`Toaster`: mantiene esos colores dentro de la paleta en lugar de los genéricos de ' +
-          'la librería de toasts.',
+          'A regular toast already uses xeroxUI colors. If you\'re going to use ' +
+          '`rich-colors` (success / info / warning / error with a colored background), use ' +
+          '`XSonner` instead of `Toaster`: it keeps those colors within the palette instead of ' +
+          'the toast library\'s generic ones.',
       },
     },
   },
@@ -24,32 +24,31 @@ const meta: Meta = {
 export default meta
 type Story = StoryObj
 
-export const Basico: Story = {
-  name: 'Básico',
+export const Basic: Story = {
   render: () => ({
     components: { Toaster, Button },
     setup: () => ({
-      disparar: () => toast('Evento creado', { description: 'Lunes, 9am — Revisión de sprint' }),
+      trigger: () => toast('Event created', { description: 'Monday, 9am — Sprint review' }),
     }),
     template: `
       <div>
         <Toaster />
-        <Button @click="disparar">Mostrar toast</Button>
+        <Button @click="trigger">Show toast</Button>
       </div>
     `,
   }),
 }
 
-/** `Toaster` con `rich-colors` usa verdes/rojos genéricos; `XSonner` usa los de xeroxUI. */
-export const ColoresEnriquecidos: Story = {
-  name: 'Colores enriquecidos (XSonner)',
+/** `Toaster` with `rich-colors` uses generic greens/reds; `XSonner` uses xeroxUI's. */
+export const RichColors: Story = {
+  name: 'Rich colors (XSonner)',
   render: () => ({
     components: { XSonner, Button },
     setup: () => ({
-      success: () => toast.success('Cambios guardados'),
-      error: () => toast.error('No se pudo conectar al servidor'),
-      warning: () => toast.warning('Tu sesión expira en 5 minutos'),
-      info: () => toast.info('Hay una versión nueva disponible'),
+      success: () => toast.success('Changes saved'),
+      error: () => toast.error('Could not connect to the server'),
+      warning: () => toast.warning('Your session expires in 5 minutes'),
+      info: () => toast.info('A new version is available'),
     }),
     template: `
       <div class="flex flex-col gap-3">

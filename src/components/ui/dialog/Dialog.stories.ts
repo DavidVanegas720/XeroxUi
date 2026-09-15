@@ -9,19 +9,19 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 const meta = {
-  title: 'Componentes/Dialog',
+  title: 'Components/Dialog',
   component: Dialog,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component:
-          'Modal accesible: atrapa el foco, lo restaura al cerrar, se cierra con Escape y ' +
-          'asocia título y descripción automáticamente vía `aria-labelledby` / ' +
-          '`aria-describedby`. Una salvedad: no agrega `aria-modal="true"` por su cuenta — si tu ' +
-          'caso de uso lo requiere, agrégalo directo en `DialogContent`. El overlay usa un ' +
-          'scrim oscuro fijo (`bg-black/80`) que no cambia con el tema: es un recurso de ' +
-          'oscurecimiento convencional, no un color de marca.',
+          'Accessible modal: traps focus, restores it on close, closes on Escape, and ties the ' +
+          'title and description automatically via `aria-labelledby` / `aria-describedby`. One ' +
+          'thing to keep in mind: it does not add `aria-modal="true"` on its own — if your use ' +
+          'case needs it, add it directly on `DialogContent`. The overlay uses a fixed dark ' +
+          'scrim (`bg-black/80`) that does not change with the theme: it\'s a conventional ' +
+          'dimming layer, not a brand color.',
       },
     },
   },
@@ -30,27 +30,26 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Basico: Story = {
-  name: 'Básico',
+export const Basic: Story = {
   render: () => ({
     components: { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Button, Input, Label },
     template: `
       <Dialog>
-        <DialogTrigger as-child><Button variant="outline">Editar perfil</Button></DialogTrigger>
+        <DialogTrigger as-child><Button variant="outline">Edit profile</Button></DialogTrigger>
         <DialogContent class="sm:max-w-[420px]">
           <DialogHeader>
-            <DialogTitle>Editar perfil</DialogTitle>
-            <DialogDescription>Los cambios se guardan al confirmar.</DialogDescription>
+            <DialogTitle>Edit profile</DialogTitle>
+            <DialogDescription>Changes are saved on confirm.</DialogDescription>
           </DialogHeader>
           <div class="flex flex-col gap-4 py-2">
             <div class="flex flex-col gap-2">
-              <Label for="nombre">Nombre</Label>
-              <Input id="nombre" value="David" />
+              <Label for="name">Name</Label>
+              <Input id="name" value="David" />
             </div>
           </div>
           <DialogFooter class="gap-2">
-            <DialogClose as-child><Button variant="outline">Cancelar</Button></DialogClose>
-            <Button>Guardar</Button>
+            <DialogClose as-child><Button variant="outline">Cancel</Button></DialogClose>
+            <Button>Save</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -58,21 +57,21 @@ export const Basico: Story = {
   }),
 }
 
-/** Confirmación destructiva: usa XButton para no romper el contraste en dark. */
-export const Destructivo: Story = {
+/** Destructive confirmation: uses XButton to keep dark-mode contrast correct. */
+export const Destructive: Story = {
   render: () => ({
     components: { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Button, XButton },
     template: `
       <Dialog>
-        <DialogTrigger as-child><XButton variant="destructive">Eliminar cuenta</XButton></DialogTrigger>
+        <DialogTrigger as-child><XButton variant="destructive">Delete account</XButton></DialogTrigger>
         <DialogContent class="sm:max-w-[420px]">
           <DialogHeader>
-            <DialogTitle>Eliminar cuenta</DialogTitle>
-            <DialogDescription>Esta acción es permanente y no se puede deshacer.</DialogDescription>
+            <DialogTitle>Delete account</DialogTitle>
+            <DialogDescription>This action is permanent and cannot be undone.</DialogDescription>
           </DialogHeader>
           <DialogFooter class="gap-2">
-            <DialogClose as-child><Button variant="outline">Cancelar</Button></DialogClose>
-            <XButton variant="destructive">Sí, eliminar</XButton>
+            <DialogClose as-child><Button variant="outline">Cancel</Button></DialogClose>
+            <XButton variant="destructive">Yes, delete</XButton>
           </DialogFooter>
         </DialogContent>
       </Dialog>

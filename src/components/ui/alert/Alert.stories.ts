@@ -4,7 +4,7 @@ import { Alert, AlertDescription, AlertTitle } from '.'
 import { XAlert } from '@/components/xerox/alert'
 
 const meta: Meta = {
-  title: 'Componentes/Alert',
+  title: 'Components/Alert',
   component: Alert,
   tags: ['autodocs'],
   parameters: {
@@ -12,10 +12,10 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          '`XAlert` agrega las variantes `success`, `warning` e `info` (`Alert` solo trae ' +
-          '`default` y `destructive`). Además, usa siempre `XAlert` en vez de `Alert` para la ' +
-          'variante `destructive`: en `Alert` el texto no llega al contraste mínimo en ninguno ' +
-          'de los dos modos, no solo en dark.',
+          '`XAlert` adds the `success`, `warning` and `info` variants (`Alert` only ships ' +
+          '`default` and `destructive`). Also, always use `XAlert` instead of `Alert` for the ' +
+          '`destructive` variant: in `Alert` the text does not reach the minimum contrast in ' +
+          'either mode.',
       },
     },
   },
@@ -29,15 +29,15 @@ export const Playground: Story = {
     template: `
       <Alert class="w-[420px]">
         <TerminalIcon />
-        <AlertTitle>Puedes agregar archivos a tu proyecto</AlertTitle>
-        <AlertDescription>Arrástralos a esta zona o usa el botón de arriba.</AlertDescription>
+        <AlertTitle>You can add files to your project</AlertTitle>
+        <AlertDescription>Drag them into this area or use the button above.</AlertDescription>
       </Alert>
     `,
   }),
 }
 
-/** `default` usa `Alert` tal cual; todo lo demás, incluido `destructive`, usa `XAlert`. */
-export const Variantes: Story = {
+/** `default` uses `Alert` as-is; everything else, including `destructive`, uses `XAlert`. */
+export const Variants: Story = {
   render: () => ({
     components: { Alert, AlertDescription, AlertTitle, XAlert, TerminalIcon, OctagonAlertIcon, CircleCheckIcon, TriangleAlertIcon, InfoIcon },
     template: `
@@ -45,27 +45,27 @@ export const Variantes: Story = {
         <Alert>
           <TerminalIcon />
           <AlertTitle>Default</AlertTitle>
-          <AlertDescription>Información neutral, sin urgencia.</AlertDescription>
+          <AlertDescription>Neutral information, no urgency.</AlertDescription>
         </Alert>
         <XAlert variant="destructive">
           <OctagonAlertIcon />
           <AlertTitle>Destructive</AlertTitle>
-          <AlertDescription>No se pudo guardar el cambio.</AlertDescription>
+          <AlertDescription>The change could not be saved.</AlertDescription>
         </XAlert>
         <XAlert variant="success">
           <CircleCheckIcon />
           <AlertTitle>Success</AlertTitle>
-          <AlertDescription>Los cambios se guardaron correctamente.</AlertDescription>
+          <AlertDescription>Your changes were saved successfully.</AlertDescription>
         </XAlert>
         <XAlert variant="warning">
           <TriangleAlertIcon />
           <AlertTitle>Warning</AlertTitle>
-          <AlertDescription>Tu plan vence en 3 días.</AlertDescription>
+          <AlertDescription>Your plan expires in 3 days.</AlertDescription>
         </XAlert>
         <XAlert variant="info">
           <InfoIcon />
           <AlertTitle>Info</AlertTitle>
-          <AlertDescription>La próxima actualización sale el lunes.</AlertDescription>
+          <AlertDescription>The next update ships on Monday.</AlertDescription>
         </XAlert>
       </div>
     `,
@@ -73,39 +73,39 @@ export const Variantes: Story = {
 }
 
 /**
- * `Alert` con `variant="destructive"` falla el contraste mínimo en los dos
- * modos, no solo en dark. `XAlert` lo corrige sin cambiar nada más de la API.
- * Cambia el tema en la toolbar para comparar.
+ * `Alert` with `variant="destructive"` fails the minimum contrast in both
+ * modes, not just dark. `XAlert` fixes it without changing anything else in
+ * the API. Switch the theme in the toolbar to compare.
  */
-export const CorreccionDeDestructive: Story = {
-  name: 'Corrección de destructive',
+export const ContrastFix: Story = {
+  name: 'Contrast fix',
   render: () => ({
     components: { Alert, AlertDescription, AlertTitle, XAlert, OctagonAlertIcon },
     template: `
       <div class="flex w-[420px] flex-col gap-3">
         <Alert variant="destructive">
           <OctagonAlertIcon />
-          <AlertTitle>Registro — descripción en 3.99:1 (light) y 3.67:1 (dark)</AlertTitle>
-          <AlertDescription>No se pudo guardar el cambio.</AlertDescription>
+          <AlertTitle>Alert — description at 3.99:1 (light) and 3.67:1 (dark)</AlertTitle>
+          <AlertDescription>The change could not be saved.</AlertDescription>
         </Alert>
         <XAlert variant="destructive">
           <OctagonAlertIcon />
-          <AlertTitle>XAlert — descripción en 9.07:1 (light) y 7.81:1 (dark)</AlertTitle>
-          <AlertDescription>No se pudo guardar el cambio.</AlertDescription>
+          <AlertTitle>XAlert — description at 9.07:1 (light) and 7.81:1 (dark)</AlertTitle>
+          <AlertDescription>The change could not be saved.</AlertDescription>
         </XAlert>
       </div>
     `,
   }),
 }
 
-export const SinIcono: Story = {
-  name: 'Sin ícono',
+export const NoIcon: Story = {
+  name: 'No icon',
   render: () => ({
     components: { Alert, AlertDescription, AlertTitle },
     template: `
       <Alert class="w-[420px]">
-        <AlertTitle>Sin ícono</AlertTitle>
-        <AlertDescription>El grid se ajusta solo cuando no hay svg adentro.</AlertDescription>
+        <AlertTitle>No icon</AlertTitle>
+        <AlertDescription>The grid adjusts on its own when there's no svg inside.</AlertDescription>
       </Alert>
     `,
   }),

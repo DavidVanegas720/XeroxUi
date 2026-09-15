@@ -1,12 +1,12 @@
 import type { Decorator, Preview } from '@storybook/vue3-vite'
-// Trae Tailwind + tokens + fuentes + capa base. Es el mismo CSS que consume
-// el paquete publicado, asi que lo que se ve en Storybook es lo que se instala.
+// Pulls in Tailwind + tokens + fonts + base layer. Same CSS the published
+// package ships, so what you see in Storybook is what gets installed.
 import '../src/styles/index.css'
 
 /**
- * Aplica la clase `.dark` al <html> segun el toggle de la toolbar y pinta el
- * fondo del iframe con el token real, para que el modo se vea completo y no
- * solo dentro del componente.
+ * Applies the `.dark` class to <html> based on the toolbar toggle, and paints
+ * the iframe background with the real token, so the mode reads as complete
+ * and not just inside the component.
  */
 const withTheme: Decorator = (story, context) => {
   const theme = context.globals.theme ?? 'light'
@@ -20,9 +20,9 @@ const preview: Preview = {
   decorators: [withTheme],
   globalTypes: {
     theme: {
-      description: 'Tema de xeroxUI',
+      description: 'xeroxUI theme',
       toolbar: {
-        title: 'Tema',
+        title: 'Theme',
         icon: 'circlehollow',
         items: [
           { value: 'light', icon: 'sun', title: 'Light' },
@@ -35,9 +35,16 @@ const preview: Preview = {
   initialGlobals: { theme: 'light' },
   parameters: {
     controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },
-    // 'error' hace que una violacion de axe rompa el build en CI.
+    // 'error' makes an axe violation fail the CI build.
     a11y: { test: 'error' },
     docs: { toc: true },
+    // Introduction first, then Components, then Foundations. Everything else
+    // falls back to alphabetical within each group.
+    options: {
+      storySort: {
+        order: ['Introduction', 'Components', ['*'], 'Foundations', ['*']],
+      },
+    },
   },
 }
 

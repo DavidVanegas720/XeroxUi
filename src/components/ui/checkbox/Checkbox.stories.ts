@@ -3,7 +3,7 @@ import { Checkbox } from '.'
 import { Label } from '@/components/ui/label'
 
 const meta: Meta = {
-  title: 'Componentes/Checkbox',
+  title: 'Components/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
   parameters: {
@@ -11,10 +11,10 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'El estado `indeterminate` se anuncia correctamente a un lector de pantalla ' +
-          '(`aria-checked="mixed"`), pero por defecto se ve igual que `checked`: mismo ícono ' +
-          'de check. Si necesitas distinguirlos también a la vista, pasa tu propio ícono por ' +
-          'el slot por defecto.',
+          'The `indeterminate` state is correctly announced to screen readers ' +
+          '(`aria-checked="mixed"`), but by default it looks the same as `checked`: same check ' +
+          'icon. If you need to tell them apart visually too, pass your own icon through the ' +
+          'default slot.',
       },
     },
   },
@@ -29,20 +29,20 @@ export const Playground: Story = {
   }),
 }
 
-export const ConLabel: Story = {
-  name: 'Con label',
+export const WithLabel: Story = {
+  name: 'With label',
   render: () => ({
     components: { Checkbox, Label },
     template: `
       <div class="flex items-center gap-2">
-        <Checkbox id="terminos" />
-        <Label for="terminos">Acepto los términos y condiciones</Label>
+        <Checkbox id="terms" />
+        <Label for="terms">I accept the terms and conditions</Label>
       </div>
     `,
   }),
 }
 
-export const Estados: Story = {
+export const States: Story = {
   render: () => ({
     components: { Checkbox, Label },
     template: `
@@ -52,20 +52,20 @@ export const Estados: Story = {
           <Label for="normal">Normal</Label>
         </div>
         <div class="flex items-center gap-2">
-          <Checkbox id="marcado" :model-value="true" />
-          <Label for="marcado">Marcado</Label>
+          <Checkbox id="checked" :model-value="true" />
+          <Label for="checked">Checked</Label>
         </div>
         <div class="flex items-center gap-2">
-          <Checkbox id="indeterminado" model-value="indeterminate" />
-          <Label for="indeterminado">Indeterminado</Label>
+          <Checkbox id="indeterminate" model-value="indeterminate" />
+          <Label for="indeterminate">Indeterminate</Label>
         </div>
         <div class="flex items-center gap-2">
           <Checkbox id="disabled" disabled />
           <Label for="disabled" class="opacity-50">Disabled</Label>
         </div>
         <div class="flex items-center gap-2">
-          <Checkbox id="disabled-marcado" disabled :model-value="true" />
-          <Label for="disabled-marcado" class="opacity-50">Disabled + marcado</Label>
+          <Checkbox id="disabled-checked" disabled :model-value="true" />
+          <Label for="disabled-checked" class="opacity-50">Disabled + checked</Label>
         </div>
       </div>
     `,

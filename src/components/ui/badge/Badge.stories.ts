@@ -5,7 +5,7 @@ import { XBadge } from '@/components/xerox/badge'
 const VARIANTS = ['default', 'secondary', 'destructive', 'outline'] as const
 
 const meta = {
-  title: 'Componentes/Badge',
+  title: 'Components/Badge',
   component: Badge,
   tags: ['autodocs'],
   argTypes: { variant: { control: 'select', options: VARIANTS } },
@@ -14,9 +14,9 @@ const meta = {
     docs: {
       description: {
         component:
-          'Etiqueta compacta para estado o categoría. Para la variante `destructive` usa ' +
-          '`XBadge` en vez de `Badge`: mantiene el contraste correcto en modo oscuro (igual ' +
-          'que `Button`/`XButton`).',
+          'Compact label for status or category. For the `destructive` variant use `XBadge` ' +
+          'instead of `Badge`: it keeps the correct contrast in dark mode (same as ' +
+          '`Button`/`XButton`).',
       },
     },
   },
@@ -29,11 +29,11 @@ export const Playground: Story = {
   render: (args) => ({
     components: { Badge },
     setup: () => ({ args }),
-    template: `<Badge v-bind="args">Etiqueta</Badge>`,
+    template: `<Badge v-bind="args">Label</Badge>`,
   }),
 }
 
-export const Variantes: Story = {
+export const Variants: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { Badge },
@@ -46,16 +46,16 @@ export const Variantes: Story = {
   }),
 }
 
-/** `Badge` con `variant="destructive"` no cumple contraste en modo oscuro; `XBadge` sí. */
-export const CorreccionDeDestructive: Story = {
-  name: 'Corrección de destructive',
+/** `Badge` with `variant="destructive"` fails contrast in dark mode; `XBadge` doesn't. */
+export const ContrastFix: Story = {
+  name: 'Contrast fix',
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { Badge, XBadge },
     template: `
       <div class="flex items-center gap-6">
         <div class="flex flex-col items-start gap-2">
-          <p class="text-sm text-muted-foreground">Registro</p>
+          <p class="text-sm text-muted-foreground">Badge</p>
           <Badge variant="destructive">Error</Badge>
         </div>
         <div class="flex flex-col items-start gap-2">
@@ -67,12 +67,12 @@ export const CorreccionDeDestructive: Story = {
   }),
 }
 
-/** Con `as="a"` el badge clicable sigue siendo un enlace real, navegable por teclado. */
-export const ComoEnlace: Story = {
-  name: 'Como enlace',
+/** With `as="a"` a clickable badge stays a real, keyboard-navigable link. */
+export const AsLink: Story = {
+  name: 'As link',
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { Badge },
-    template: `<Badge as="a" href="#" variant="secondary">Enlace navegable</Badge>`,
+    template: `<Badge as="a" href="#" variant="secondary">Navigable link</Badge>`,
   }),
 }

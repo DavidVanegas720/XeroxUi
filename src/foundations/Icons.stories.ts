@@ -2,28 +2,29 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import * as icons from '@lucide/vue'
 
 const meta: Meta = {
-  title: 'Fundaciones/Iconos',
+  title: 'Foundations/Icons',
   tags: ['autodocs'],
   parameters: {
     controls: { disable: true },
     docs: {
       description: {
         component:
-          '**xeroxUI usa [Lucide](https://lucide.dev) (`@lucide/vue`) como librería de íconos.** ' +
-          'No es un paquete propio ni se reexporta desde `xerox-ui`: quien consume la librería ' +
-          'instala `@lucide/vue` en su proyecto e importa cada ícono directo desde ahí, igual que ' +
-          'hacen los componentes de `ui/` (`Checkbox`, `Select`, `Dialog`, `Sonner`). Reexportar ' +
-          'los ~3700 íconos del catálogo inflaría el bundle de xeroxUI sin necesidad: el consumidor ' +
-          'ya paga ese costo una sola vez, con tree-shaking, al importar solo lo que usa.\n\n' +
-          '**Tamaño:** `size-4` (16px) es el default para íconos dentro de un control (botón, ' +
-          'input, ítem de menú) — es la clase que ya aplican `ui/select`, `ui/dialog` y `ui/tabs` ' +
-          'vía `[&_svg:not([class*=\'size-\'])]:size-4`. `size-3.5` aparece en contextos más ' +
-          'chicos, como el ícono de `Checkbox`. Para un ícono standalone (no acompañando texto), ' +
-          'usa el tamaño que pida el layout — no hay una regla fija.\n\n' +
-          '**Color:** cada ícono de Lucide trae `stroke="currentColor"` por defecto, así que ' +
-          'hereda el color del texto que lo rodea sin pasar ningún prop. Para cambiarlo alcanza ' +
-          'con una clase `text-*` (`text-muted-foreground`, `text-destructive`, etc.) en el ' +
-          'ícono o en un contenedor.',
+          '**xeroxUI uses [Lucide](https://lucide.dev) (`@lucide/vue`) as its icon library.** ' +
+          'It is not bundled or re-exported from `xerox-ui`: consumers install `@lucide/vue` in ' +
+          'their own project and import each icon directly from it, the same way the `ui/` ' +
+          'components do internally (`Checkbox`, `Select`, `Dialog`, `Sonner`). Re-exporting the ' +
+          'full catalog (~3700 icons) would bloat the published bundle for no reason: the ' +
+          'consumer already pays that cost once, with tree-shaking, by importing only what ' +
+          'they use.\n\n' +
+          '**Size:** `size-4` (16px) is the default for icons inside a control (button, input, ' +
+          'menu item) — it\'s the class already applied by `ui/select`, `ui/dialog` and ' +
+          '`ui/tabs` via `[&_svg:not([class*=\'size-\'])]:size-4`. `size-3.5` shows up in ' +
+          'tighter contexts, like the `Checkbox` icon. For a standalone icon (not next to text), ' +
+          'use whatever size the layout calls for — there\'s no fixed rule.\n\n' +
+          '**Color:** every Lucide icon ships with `stroke="currentColor"` by default, so it ' +
+          'inherits the color of the surrounding text without any prop. To change it, a `text-*` ' +
+          'class (`text-muted-foreground`, `text-destructive`, etc.) on the icon or a container ' +
+          'is enough.',
       },
     },
   },
@@ -32,46 +33,45 @@ export default meta
 type Story = StoryObj
 
 /**
- * Selección curada para trabajo de interfaz, agrupada por uso. No es el
- * catálogo completo de Lucide (~3700 íconos) — es una muestra de los nombres
- * más comunes para navegación, acciones, estado y contenido. Cualquier otro
- * ícono de https://lucide.dev/icons se importa igual, con el mismo patrón.
+ * Curated selection for interface work, grouped by use. It is not the full
+ * Lucide catalog (~3700 icons) — it's a sample of the most common names for
+ * navigation, actions, status and content. Any other icon from
+ * https://lucide.dev/icons imports the same way, with the same pattern.
  */
-const GRUPOS: Record<string, string[]> = {
-  Navegación: [
+const GROUPS: Record<string, string[]> = {
+  Navigation: [
     'ChevronDown', 'ChevronUp', 'ChevronLeft', 'ChevronRight',
     'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown',
     'Menu', 'MoreHorizontal', 'MoreVertical', 'ExternalLink',
   ],
-  Acciones: [
+  Actions: [
     'Plus', 'X', 'Check', 'Search', 'Pencil', 'Trash2',
     'Copy', 'Download', 'Upload', 'Settings', 'RefreshCw', 'LogOut',
   ],
-  Estado: [
+  Status: [
     'CircleCheck', 'CircleAlert', 'Info', 'TriangleAlert',
     'OctagonAlert', 'Loader2', 'Bell', 'Star', 'Heart',
   ],
-  Contenido: [
+  Content: [
     'User', 'Mail', 'Calendar', 'Clock', 'Eye', 'EyeOff',
     'Lock', 'File', 'Folder', 'Filter',
   ],
 }
 
-export const Catalogo: Story = {
-  name: 'Catálogo',
+export const Catalog: Story = {
   render: () => ({
-    setup: () => ({ grupos: GRUPOS, icons }),
+    setup: () => ({ groups: GROUPS, icons }),
     template: `
       <div class="flex flex-col gap-8">
-        <div v-for="(nombres, grupo) in grupos" :key="grupo">
-          <p class="mb-3 text-sm font-medium">{{ grupo }}</p>
+        <div v-for="(names, group) in groups" :key="group">
+          <p class="mb-3 text-sm font-medium">{{ group }}</p>
           <div class="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
             <div
-              v-for="nombre in nombres" :key="nombre"
+              v-for="name in names" :key="name"
               class="flex flex-col items-center gap-2 rounded-md border p-3 text-center"
             >
-              <component :is="icons[nombre]" class="size-5" />
-              <span class="text-[11px] text-muted-foreground">{{ nombre }}</span>
+              <component :is="icons[name]" class="size-5" />
+              <span class="text-[11px] text-muted-foreground">{{ name }}</span>
             </div>
           </div>
         </div>
@@ -80,9 +80,8 @@ export const Catalogo: Story = {
   }),
 }
 
-/** Mismo ícono (AlertTriangle), tres tamaños. size-4 es el default de un control. */
-export const Tamanos: Story = {
-  name: 'Tamaños',
+/** Same icon (AlertTriangle), three sizes. size-4 is the default for a control. */
+export const Sizes: Story = {
   render: () => ({
     setup: () => ({ icons }),
     template: `
@@ -104,9 +103,9 @@ export const Tamanos: Story = {
   }),
 }
 
-/** El mismo ícono, sin ningún prop de color: hereda text-* del contenedor. */
-export const HeredaColor: Story = {
-  name: 'Hereda color',
+/** Same icon, with no color prop at all: it inherits text-* from the container. */
+export const InheritsColor: Story = {
+  name: 'Inherits color',
   render: () => ({
     setup: () => ({ icons }),
     template: `

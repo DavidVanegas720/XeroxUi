@@ -3,7 +3,7 @@ import { Switch } from '.'
 import { Label } from '@/components/ui/label'
 
 const meta: Meta = {
-  title: 'Componentes/Switch',
+  title: 'Components/Switch',
   component: Switch,
   tags: ['autodocs'],
   parameters: {
@@ -11,9 +11,9 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'El estado se distingue por color además de por la posición del thumb: apagado usa ' +
-          'un tono neutro y encendido el color primario, con contraste suficiente contra el ' +
-          'fondo en los dos casos.',
+          'State is distinguished by color as well as thumb position: off uses a neutral tone ' +
+          'and on uses the primary color, with enough contrast against the background in both ' +
+          'cases.',
       },
     },
   },
@@ -28,39 +28,39 @@ export const Playground: Story = {
   }),
 }
 
-export const ConLabel: Story = {
-  name: 'Con label',
+export const WithLabel: Story = {
+  name: 'With label',
   render: () => ({
     components: { Switch, Label },
     template: `
       <div class="flex items-center gap-2">
-        <Switch id="notificaciones" :model-value="true" />
-        <Label for="notificaciones">Notificaciones por email</Label>
+        <Switch id="notifications" :model-value="true" />
+        <Label for="notifications">Email notifications</Label>
       </div>
     `,
   }),
 }
 
-export const Estados: Story = {
+export const States: Story = {
   render: () => ({
     components: { Switch, Label },
     template: `
       <div class="flex flex-col gap-4">
         <div class="flex items-center gap-2">
           <Switch id="off" />
-          <Label for="off">Apagado</Label>
+          <Label for="off">Off</Label>
         </div>
         <div class="flex items-center gap-2">
           <Switch id="on" :model-value="true" />
-          <Label for="on">Encendido</Label>
+          <Label for="on">On</Label>
         </div>
         <div class="flex items-center gap-2">
           <Switch id="disabled-off" disabled />
-          <Label for="disabled-off" class="opacity-50">Disabled, apagado</Label>
+          <Label for="disabled-off" class="opacity-50">Disabled, off</Label>
         </div>
         <div class="flex items-center gap-2">
           <Switch id="disabled-on" disabled :model-value="true" />
-          <Label for="disabled-on" class="opacity-50">Disabled, encendido</Label>
+          <Label for="disabled-on" class="opacity-50">Disabled, on</Label>
         </div>
       </div>
     `,

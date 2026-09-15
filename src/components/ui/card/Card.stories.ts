@@ -4,15 +4,15 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
 const meta = {
-  title: 'Componentes/Card',
+  title: 'Components/Card',
   component: Card,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component:
-          'Superficie contenedora. En light usa `--card` (Snow, igual que el fondo) y se separa ' +
-          'por borde; en dark sube a `stone-800` para elevarse sobre Carbon Black.',
+          'Container surface. In light mode it uses `--card` (Snow, same as the background) and ' +
+          'separates with a border; in dark mode it rises to `stone-800` to lift off Carbon Black.',
       },
     },
   },
@@ -21,37 +21,37 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Completa: Story = {
+export const Full: Story = {
   render: () => ({
     components: { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Button, Badge },
     template: `
       <Card class="w-[380px]">
         <CardHeader>
-          <CardTitle>Despliegue a producción</CardTitle>
-          <CardDescription>Se aplicarán 3 migraciones pendientes.</CardDescription>
+          <CardTitle>Production deployment</CardTitle>
+          <CardDescription>3 pending migrations will be applied.</CardDescription>
           <CardAction><Badge variant="secondary">v0.1.0</Badge></CardAction>
         </CardHeader>
         <CardContent>
           <p class="text-sm text-muted-foreground">
-            El título usa Yanone Kaffeesatz y el cuerpo Kode Mono.
+            The title uses Yanone Kaffeesatz and the body uses Kode Mono.
           </p>
         </CardContent>
         <CardFooter class="gap-2">
-          <Button variant="outline">Cancelar</Button>
-          <Button>Desplegar</Button>
+          <Button variant="outline">Cancel</Button>
+          <Button>Deploy</Button>
         </CardFooter>
       </Card>
     `,
   }),
 }
 
-export const SoloContenido: Story = {
-  name: 'Solo contenido',
+export const ContentOnly: Story = {
+  name: 'Content only',
   render: () => ({
     components: { Card, CardContent },
     template: `
       <Card class="w-[380px]">
-        <CardContent><p class="text-sm">Card mínima, sin header ni footer.</p></CardContent>
+        <CardContent><p class="text-sm">Minimal card, no header or footer.</p></CardContent>
       </Card>
     `,
   }),

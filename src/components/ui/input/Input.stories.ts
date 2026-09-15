@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { Input } from '.'
 import { Label } from '@/components/ui/label'
 
-/** placeholder/disabled/type son attrs nativos del <input>, no props del componente. */
+/** placeholder/disabled/type are native <input> attrs, not component props. */
 interface InputArgs {
   placeholder?: string
   disabled?: boolean
@@ -10,7 +10,7 @@ interface InputArgs {
 }
 
 const meta: Meta<InputArgs> = {
-  title: 'Componentes/Input',
+  title: 'Components/Input',
   component: Input,
   tags: ['autodocs'],
   argTypes: {
@@ -18,13 +18,13 @@ const meta: Meta<InputArgs> = {
     disabled: { control: 'boolean' },
     type: { control: 'select', options: ['text', 'email', 'password', 'number', 'search'] },
   },
-  args: { placeholder: 'tu@email.com', type: 'email' },
+  args: { placeholder: 'you@email.com', type: 'email' },
   parameters: {
     docs: {
       description: {
         component:
-          'El borde es más marcado que el de una Card o un separador, a propósito: un control ' +
-          'interactivo necesita más contraste contra el fondo que un borde decorativo.',
+          'The border is bolder than a Card or a divider, on purpose: an interactive control ' +
+          'needs more contrast against the background than a decorative border does.',
       },
     },
   },
@@ -42,24 +42,24 @@ export const Playground: Story = {
 }
 
 /**
- * La asociación label/input se hace con `for` + `id`. Sin eso el lector de
- * pantalla no anuncia la etiqueta al enfocar el campo.
+ * The label/input association is made with `for` + `id`. Without it, screen
+ * readers won't announce the label when the field receives focus.
  */
-export const ConLabel: Story = {
-  name: 'Con label',
+export const WithLabel: Story = {
+  name: 'With label',
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { Input, Label },
     template: `
       <div class="flex w-[280px] flex-col gap-2">
         <Label for="email">Email</Label>
-        <Input id="email" type="email" placeholder="tu@email.com" />
+        <Input id="email" type="email" placeholder="you@email.com" />
       </div>
     `,
   }),
 }
 
-export const Estados: Story = {
+export const States: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { Input, Label },
@@ -67,17 +67,17 @@ export const Estados: Story = {
       <div class="flex w-[280px] flex-col gap-5">
         <div class="flex flex-col gap-2">
           <Label for="normal">Normal</Label>
-          <Input id="normal" placeholder="Escribe algo" />
+          <Input id="normal" placeholder="Type something" />
         </div>
         <div class="flex flex-col gap-2">
           <Label for="disabled">Disabled</Label>
-          <Input id="disabled" disabled placeholder="No editable" />
+          <Input id="disabled" disabled placeholder="Not editable" />
         </div>
         <div class="flex flex-col gap-2">
-          <Label for="invalido">Inválido</Label>
-          <Input id="invalido" aria-invalid="true" aria-describedby="err" value="no-es-un-email" />
-          <!-- aria-describedby ata el mensaje al campo: el error se anuncia junto al valor -->
-          <p id="err" class="text-sm text-destructive">Formato de email inválido.</p>
+          <Label for="invalid">Invalid</Label>
+          <Input id="invalid" aria-invalid="true" aria-describedby="err" value="not-an-email" />
+          <!-- aria-describedby ties the message to the field: the error is announced alongside the value -->
+          <p id="err" class="text-sm text-destructive">Invalid email format.</p>
         </div>
       </div>
     `,

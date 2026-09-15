@@ -3,7 +3,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { Label } from '@/components/ui/label'
 
 const meta: Meta = {
-  title: 'Componentes/Select',
+  title: 'Components/Select',
   component: Select,
   tags: ['autodocs'],
   parameters: {
@@ -11,10 +11,10 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          '**Todo `SelectTrigger` necesita `aria-label` o un `<Label for>` asociado.** ' +
-          'El placeholder que se ve en `SelectValue` no alcanza: por especificación ARIA, un ' +
-          '`combobox` no toma su nombre accesible del texto visible. Sin uno de los dos, el ' +
-          'control queda mudo para un lector de pantalla aunque se vea perfecto.',
+          '**Every `SelectTrigger` needs an `aria-label` or an associated `<Label for>`.** ' +
+          'The placeholder shown in `SelectValue` is not enough: by the ARIA spec, a ' +
+          '`combobox` does not take its accessible name from visible text. Without one of the ' +
+          'two, the control is mute to a screen reader even though it looks perfect.',
       },
     },
   },
@@ -27,8 +27,8 @@ export const Playground: Story = {
     components: { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue },
     template: `
       <Select>
-        <SelectTrigger class="w-[220px]" aria-label="Elige un framework">
-          <SelectValue placeholder="Elige un framework" />
+        <SelectTrigger class="w-[220px]" aria-label="Choose a framework">
+          <SelectValue placeholder="Choose a framework" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
@@ -43,22 +43,22 @@ export const Playground: Story = {
   }),
 }
 
-/** Preferido sobre `aria-label` cuando hay un label visible en la UI. */
-export const ConLabel: Story = {
-  name: 'Con label',
+/** Preferred over `aria-label` when there's a visible label in the UI. */
+export const WithLabel: Story = {
+  name: 'With label',
   render: () => ({
     components: { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Label },
     template: `
       <div class="flex w-[220px] flex-col gap-2">
-        <Label for="pais">País</Label>
+        <Label for="country">Country</Label>
         <Select>
-          <SelectTrigger id="pais" class="w-full">
-            <SelectValue placeholder="Selecciona un país" />
+          <SelectTrigger id="country" class="w-full">
+            <SelectValue placeholder="Select a country" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="ar">Argentina</SelectItem>
             <SelectItem value="co">Colombia</SelectItem>
-            <SelectItem value="mx">México</SelectItem>
+            <SelectItem value="mx">Mexico</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -66,38 +66,37 @@ export const ConLabel: Story = {
   }),
 }
 
-export const Tamanos: Story = {
-  name: 'Tamaños',
+export const Sizes: Story = {
   render: () => ({
     components: { Select, SelectContent, SelectItem, SelectTrigger, SelectValue },
     template: `
       <div class="flex flex-col items-start gap-3">
         <Select>
-          <SelectTrigger size="sm" class="w-[180px]" aria-label="Tamaño sm">
-            <SelectValue placeholder="Tamaño sm" />
+          <SelectTrigger size="sm" class="w-[180px]" aria-label="Size sm">
+            <SelectValue placeholder="Size sm" />
           </SelectTrigger>
-          <SelectContent><SelectItem value="a">Opción A</SelectItem></SelectContent>
+          <SelectContent><SelectItem value="a">Option A</SelectItem></SelectContent>
         </Select>
         <Select>
-          <SelectTrigger size="default" class="w-[180px]" aria-label="Tamaño default">
-            <SelectValue placeholder="Tamaño default" />
+          <SelectTrigger size="default" class="w-[180px]" aria-label="Size default">
+            <SelectValue placeholder="Size default" />
           </SelectTrigger>
-          <SelectContent><SelectItem value="a">Opción A</SelectItem></SelectContent>
+          <SelectContent><SelectItem value="a">Option A</SelectItem></SelectContent>
         </Select>
       </div>
     `,
   }),
 }
 
-export const Deshabilitado: Story = {
+export const Disabled: Story = {
   render: () => ({
     components: { Select, SelectContent, SelectItem, SelectTrigger, SelectValue },
     template: `
       <Select disabled>
-        <SelectTrigger class="w-[220px]" aria-label="No disponible">
-          <SelectValue placeholder="No disponible" />
+        <SelectTrigger class="w-[220px]" aria-label="Not available">
+          <SelectValue placeholder="Not available" />
         </SelectTrigger>
-        <SelectContent><SelectItem value="a">Opción A</SelectItem></SelectContent>
+        <SelectContent><SelectItem value="a">Option A</SelectItem></SelectContent>
       </Select>
     `,
   }),

@@ -2,24 +2,25 @@ import type { StorybookConfig } from '@storybook/vue3-vite'
 import tailwindcss from '@tailwindcss/vite'
 
 const config: StorybookConfig = {
-  // Las stories viven junto al componente que documentan, no en un src/stories/ aparte.
+  // Stories live next to the component they document, not in a separate src/stories/.
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@chromatic-com/storybook',
-    // Corre axe-core sobre cada story. Complementa a `npm run contrast`:
-    // aquel valida los tokens, este valida el DOM renderizado.
+    // Runs axe-core on every story. Complements `npm run contrast`: that one
+    // validates tokens, this one validates the rendered DOM.
     '@storybook/addon-a11y',
     '@storybook/addon-docs',
   ],
   framework: '@storybook/vue3-vite',
-  // Logo + favicon de marca (assets/brand/) servidos en la raiz del server de
-  // Storybook. Referenciados desde manager-head.html (favicon) y manager.ts
-  // (logo en la toolbar).
+  // Brand logo + favicon (assets/brand/), served at the root of Storybook's
+  // server. Referenced from manager-head.html (favicon) and manager.ts (logo
+  // in the toolbar).
   staticDirs: ['../assets/brand'],
-  // El Vite interno de Storybook no hereda vite.config.ts (ese solo aplica al
-  // build de la libreria) ni registra el plugin de Tailwind por su cuenta. Sin
-  // esto, `@import 'tailwindcss'` en index.css se sirve crudo, sin compilar:
-  // el HTML sale con las clases correctas pero ninguna regla que las resuelva.
+  // Storybook's internal Vite instance doesn't inherit vite.config.ts (that one
+  // only applies to the library build) nor register the Tailwind plugin on its
+  // own. Without this, `@import 'tailwindcss'` in index.css gets served raw,
+  // uncompiled: the HTML comes out with the right classes but no rule to
+  // resolve them.
   async viteFinal(viteConfig) {
     viteConfig.plugins ??= []
     viteConfig.plugins.push(tailwindcss())

@@ -2,11 +2,11 @@
 
 # xeroxUI
 
-Design system de componentes Vue 3 sobre [shadcn-vue](https://www.shadcn-vue.com),
-con paleta y tipografía propias. Se distribuye como paquete npm compilado: el
-consumidor **no necesita tener Tailwind instalado**.
+Vue 3 component design system built on [shadcn-vue](https://www.shadcn-vue.com), with its
+own color palette and typography. Distributed as a compiled npm package: consumers **don't
+need Tailwind installed**.
 
-## Instalación
+## Install
 
 ```bash
 npm install xerox-ui
@@ -24,13 +24,13 @@ import { XButton, Card, CardHeader, CardTitle } from 'xerox-ui'
 
 <template>
   <Card>
-    <CardHeader><CardTitle>Hola</CardTitle></CardHeader>
-    <XButton variant="destructive">Eliminar</XButton>
+    <CardHeader><CardTitle>Hello</CardTitle></CardHeader>
+    <XButton variant="destructive">Delete</XButton>
   </Card>
 </template>
 ```
 
-Para usar solo los tokens (paleta + tipografía) en tu propio stack de estilos:
+To use just the tokens (palette + typography) in your own styling stack:
 
 ```ts
 import 'xerox-ui/tokens.css'
@@ -38,15 +38,15 @@ import 'xerox-ui/tokens.css'
 
 ## Dark mode
 
-Togglea la clase `dark` en `<html>`. Todos los tokens se remapean solos.
+Toggle the `dark` class on `<html>`. Every token remaps on its own.
 
 ```ts
 document.documentElement.classList.toggle('dark')
 ```
 
-## Paleta
+## Palette
 
-| Color | Hex | Rol |
+| Color | Hex | Role |
 |---|---|---|
 | Imperial Blue | `#0A2463` | `primary` (light) |
 | Blue Bell | `#3E92CC` | `accent` / charts |
@@ -54,40 +54,40 @@ document.documentElement.classList.toggle('dark')
 | Magenta Bloom | `#D8315B` | `destructive` |
 | Carbon Black | `#1E1B18` | `foreground` (light), `background` (dark) |
 
-Los 5 son **anclas**: cada uno queda clavado en un punto exacto de la escala y
-el resto se interpola en OKLCH. Verde y ámbar son derivados para `success` y
-`warning`, que la paleta no cubría.
+All 5 are **anchors**: each one is pinned at an exact point on its ramp and the rest is
+interpolated in OKLCH. Green and amber are derived for `success` and `warning`, which the
+palette didn't cover.
 
-## Tipografía
+## Typography
 
 - **Yanone Kaffeesatz** (`--font-display`) — headings.
-- **Kode Mono** (`--font-sans`, `--font-mono`) — cuerpo e interfaz.
+- **Kode Mono** (`--font-sans`, `--font-mono`) — body and interface.
 
-Ambas son fuentes variables (eje `wght`), un `woff2` por familia: 77 KB entre
-las dos, con todos los pesos incluidos.
+Both are variable fonts (`wght` axis), one `woff2` per family: 77 KB combined, with every
+weight included.
 
 ## Scripts
 
-| Comando | Qué hace |
+| Command | What it does |
 |---|---|
-| `npm run build` | Build completo (JS + tipos + CSS + fuentes) |
-| `npm run storybook` | Storybook en `:6006` |
-| `npm run build-storybook` | Storybook estático para publicar |
-| `npm run contrast` | Valida los pares del tema contra WCAG 2.1 AA |
-| `npm run tokens` | Regenera las primitivas desde `scripts/palette.mjs` |
-| `npm run fonts` | Reconvierte las fuentes de `Fonts/` a woff2 |
+| `npm run build` | Full build (JS + types + CSS + fonts) |
+| `npm run storybook` | Storybook on `:6006` |
+| `npm run build-storybook` | Static Storybook for publishing |
+| `npm run contrast` | Validates the theme's pairs against WCAG 2.1 AA |
+| `npm run tokens` | Regenerates the primitives from `scripts/palette.mjs` |
+| `npm run fonts` | Re-converts the fonts in `Fonts/` to woff2 |
 | `npm run typecheck` | `vue-tsc --noEmit` |
 
-## Accesibilidad
+## Accessibility
 
-Dos redes, y hacen falta las dos:
+Two nets, and both are needed:
 
-- `npm run contrast` — 22 pares foreground/background, en light y en dark (44
-  comprobaciones), leyendo los CSS reales. Falla con exit 1.
-- `addon-a11y` en Storybook — axe-core sobre el DOM renderizado de cada story,
-  configurado con `test: 'error'`.
+- `npm run contrast` — 22 foreground/background pairs, in light and dark (44 checks total),
+  reading the real CSS. Fails with exit 1.
+- `addon-a11y` in Storybook — axe-core against the rendered DOM of every story, configured
+  with `test: 'error'`.
 
-## Cómo extender
+## How to extend
 
-Ver [CONVENTIONS.md](./CONVENTIONS.md). La regla corta: **`src/components/ui/`
-no se edita nunca**, así `shadcn-vue add --overwrite` siempre es seguro.
+See [CONVENTIONS.md](./CONVENTIONS.md). The short rule: **`src/components/ui/` is never
+hand-edited**, so `shadcn-vue add --overwrite` is always safe.

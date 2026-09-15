@@ -3,7 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '.'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 const meta: Meta = {
-  title: 'Componentes/Tabs',
+  title: 'Components/Tabs',
   component: Tabs,
   tags: ['autodocs'],
   parameters: {
@@ -11,9 +11,10 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'Reka UI se encarga del patrón ARIA completo: `role="tablist"`, navegación con flechas ' +
-          'y `aria-selected` en el trigger activo. En dark los triggers inactivos bajan a ' +
-          '`text-muted-foreground` y el activo sube a `text-foreground` con fondo propio.',
+          'Reka UI handles the full ARIA pattern: `role="tablist"`, arrow-key navigation, and ' +
+          '`aria-selected` on the active trigger. In dark mode, inactive triggers drop to ' +
+          '`text-muted-foreground` and the active one rises to `text-foreground` with its own ' +
+          'background.',
       },
     },
   },
@@ -25,54 +26,54 @@ export const Playground: Story = {
   render: () => ({
     components: { Tabs, TabsContent, TabsList, TabsTrigger },
     template: `
-      <Tabs default-value="cuenta" class="w-[360px]">
+      <Tabs default-value="account" class="w-[360px]">
         <TabsList class="w-full">
-          <TabsTrigger value="cuenta" class="flex-1">Cuenta</TabsTrigger>
-          <TabsTrigger value="password" class="flex-1">Contraseña</TabsTrigger>
+          <TabsTrigger value="account" class="flex-1">Account</TabsTrigger>
+          <TabsTrigger value="password" class="flex-1">Password</TabsTrigger>
         </TabsList>
-        <TabsContent value="cuenta" class="text-sm text-muted-foreground">
-          Los cambios en tu cuenta se guardan automáticamente.
+        <TabsContent value="account" class="text-sm text-muted-foreground">
+          Changes to your account are saved automatically.
         </TabsContent>
         <TabsContent value="password" class="text-sm text-muted-foreground">
-          Usa una contraseña de al menos 12 caracteres.
+          Use a password with at least 12 characters.
         </TabsContent>
       </Tabs>
     `,
   }),
 }
 
-export const ConCard: Story = {
-  name: 'Con card',
+export const WithCard: Story = {
+  name: 'With card',
   render: () => ({
     components: { Tabs, TabsContent, TabsList, TabsTrigger, Card, CardContent, CardHeader, CardTitle },
     template: `
-      <Tabs default-value="resumen" class="w-[380px]">
+      <Tabs default-value="summary" class="w-[380px]">
         <TabsList class="w-full">
-          <TabsTrigger value="resumen" class="flex-1">Resumen</TabsTrigger>
-          <TabsTrigger value="detalle" class="flex-1">Detalle</TabsTrigger>
+          <TabsTrigger value="summary" class="flex-1">Summary</TabsTrigger>
+          <TabsTrigger value="detail" class="flex-1">Detail</TabsTrigger>
         </TabsList>
-        <TabsContent value="resumen">
-          <Card><CardHeader><CardTitle>Resumen</CardTitle></CardHeader><CardContent class="text-sm">3 tareas pendientes.</CardContent></Card>
+        <TabsContent value="summary">
+          <Card><CardHeader><CardTitle>Summary</CardTitle></CardHeader><CardContent class="text-sm">3 pending tasks.</CardContent></Card>
         </TabsContent>
-        <TabsContent value="detalle">
-          <Card><CardHeader><CardTitle>Detalle</CardTitle></CardHeader><CardContent class="text-sm">Sin novedades esta semana.</CardContent></Card>
+        <TabsContent value="detail">
+          <Card><CardHeader><CardTitle>Detail</CardTitle></CardHeader><CardContent class="text-sm">No news this week.</CardContent></Card>
         </TabsContent>
       </Tabs>
     `,
   }),
 }
 
-export const Deshabilitado: Story = {
+export const Disabled: Story = {
   render: () => ({
     components: { Tabs, TabsContent, TabsList, TabsTrigger },
     template: `
-      <Tabs default-value="uno" class="w-[320px]">
+      <Tabs default-value="one" class="w-[320px]">
         <TabsList class="w-full">
-          <TabsTrigger value="uno" class="flex-1">Disponible</TabsTrigger>
-          <TabsTrigger value="dos" class="flex-1" disabled>Bloqueado</TabsTrigger>
+          <TabsTrigger value="one" class="flex-1">Available</TabsTrigger>
+          <TabsTrigger value="two" class="flex-1" disabled>Locked</TabsTrigger>
         </TabsList>
-        <TabsContent value="uno" class="text-sm text-muted-foreground">Contenido disponible.</TabsContent>
-        <TabsContent value="dos" class="text-sm text-muted-foreground">No debería verse.</TabsContent>
+        <TabsContent value="one" class="text-sm text-muted-foreground">Available content.</TabsContent>
+        <TabsContent value="two" class="text-sm text-muted-foreground">Shouldn't be visible.</TabsContent>
       </Tabs>
     `,
   }),

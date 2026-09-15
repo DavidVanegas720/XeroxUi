@@ -1,8 +1,8 @@
 import { addons } from 'storybook/manager-api'
 import { create } from 'storybook/theming'
 
-// Rebranding del manager (la UI de Storybook, no el preview). El logo vive en
-// assets/brand/, servido por staticDirs en main.ts.
+// Rebrands the manager (Storybook's own UI, not the preview). The logo lives
+// in assets/brand/, served via staticDirs in main.ts.
 addons.setConfig({
   theme: create({
     base: 'light',

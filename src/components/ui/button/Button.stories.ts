@@ -5,7 +5,7 @@ import { XButton } from '@/components/xerox/button'
 const VARIANTS = ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'] as const
 const SIZES = ['xs', 'sm', 'default', 'lg'] as const
 
-/** `disabled` y `aria-*` llegan como attrs nativos, no como props declaradas. */
+/** `disabled` and `aria-*` arrive as native attrs, not declared props. */
 interface ButtonArgs {
   variant?: ButtonVariants['variant']
   size?: ButtonVariants['size']
@@ -13,7 +13,7 @@ interface ButtonArgs {
 }
 
 const meta: Meta<ButtonArgs> = {
-  title: 'Componentes/Button',
+  title: 'Components/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: {
@@ -26,9 +26,9 @@ const meta: Meta<ButtonArgs> = {
     docs: {
       description: {
         component:
-          'Botón base de la interfaz, tematizado con los colores de xeroxUI. Para la variante ' +
-          '`destructive` usa `XButton` en vez de `Button`: mantiene el contraste correcto en ' +
-          'modo oscuro (ver la story "Corrección de destructive").',
+          'Base button, themed with xeroxUI colors. For the `destructive` variant use ' +
+          '`XButton` instead of `Button`: it keeps the correct contrast in dark mode (see the ' +
+          '"Contrast fix" story).',
       },
     },
   },
@@ -41,11 +41,11 @@ export const Playground: Story = {
   render: (args) => ({
     components: { Button },
     setup: () => ({ args }),
-    template: `<Button v-bind="args">Botón</Button>`,
+    template: `<Button v-bind="args">Button</Button>`,
   }),
 }
 
-export const Variantes: Story = {
+export const Variants: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { Button },
@@ -58,8 +58,7 @@ export const Variantes: Story = {
   }),
 }
 
-export const Tamanos: Story = {
-  name: 'Tamaños',
+export const Sizes: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { Button },
@@ -72,7 +71,7 @@ export const Tamanos: Story = {
   }),
 }
 
-export const Estados: Story = {
+export const States: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { Button },
@@ -80,7 +79,7 @@ export const Estados: Story = {
       <div class="flex flex-wrap items-center gap-3">
         <Button>Normal</Button>
         <Button disabled>Disabled</Button>
-        <Button class="ring-ring/50 ring-3 border-ring">Foco (simulado)</Button>
+        <Button class="ring-ring/50 ring-3 border-ring">Focus (simulated)</Button>
         <Button aria-invalid="true">aria-invalid</Button>
       </div>
     `,
@@ -88,24 +87,24 @@ export const Estados: Story = {
 }
 
 /**
- * `Button` con `variant="destructive"` no cumple el contraste mínimo en modo
- * oscuro. `XButton` corrige el color de relleno sin cambiar nada más de la API.
- * Cambia el tema a Dark en la toolbar para ver la diferencia.
+ * `Button` with `variant="destructive"` fails the minimum contrast in dark
+ * mode. `XButton` fixes the fill color without changing anything else in
+ * the API. Switch the theme to Dark in the toolbar to see the difference.
  */
-export const CorreccionDeDestructive: Story = {
-  name: 'Corrección de destructive',
+export const ContrastFix: Story = {
+  name: 'Contrast fix',
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { Button, XButton },
     template: `
       <div class="flex flex-col gap-6">
         <div class="flex flex-col gap-2">
-          <p class="text-sm text-muted-foreground">Button del registro — falla en dark</p>
-          <div><Button variant="destructive">Eliminar</Button></div>
+          <p class="text-sm text-muted-foreground">Button — fails in dark mode</p>
+          <div><Button variant="destructive">Delete</Button></div>
         </div>
         <div class="flex flex-col gap-2">
-          <p class="text-sm text-muted-foreground">XButton — usa --destructive-foreground, 5.65:1</p>
-          <div><XButton variant="destructive">Eliminar</XButton></div>
+          <p class="text-sm text-muted-foreground">XButton — uses --destructive-foreground, 5.65:1</p>
+          <div><XButton variant="destructive">Delete</XButton></div>
         </div>
       </div>
     `,
